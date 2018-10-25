@@ -12,7 +12,7 @@
           <li><nuxt-link to="/">Home page</nuxt-link></li>
           <li><nuxt-link to="/">Project</nuxt-link>
             <nuxt-link to="/"><img
-              src="/images/calculator-white.svg"
+              src="images/calculator-white.svg"
               alt="Calculator"
               class="bearle__menu__calculator"></nuxt-link></li>
           <li><nuxt-link to="/">Services</nuxt-link></li>

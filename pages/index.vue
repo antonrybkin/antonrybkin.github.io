@@ -16,13 +16,13 @@
       <div class="text-xs-center main--logo">
         <img
           :style="{ width: $vuetify.breakpoint.xs ? '90%' : 'auto' }"
-          src="/images/Logo.png"
+          src="images/Logo.png"
           alt="">
       </div>
     </v-flex>
     <div class="bearle__footer__calculator">
       <nuxt-link to="/"><img
-        src="/images/calculator-grey.svg"
+        src="images/calculator-grey.svg"
         alt="Project's Calculator"></nuxt-link>
     </div>
   </v-layout>
