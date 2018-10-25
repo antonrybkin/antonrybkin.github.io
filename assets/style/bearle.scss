@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Futura-Medium";
+  src: url("/fonts/FuturaPT-Medium/FuturaPT-Medium.eot");
+  src: url("/fonts/FuturaPT-Medium/FuturaPT-Medium.eot?#iefix") format("embedded-opentype"),
+  url("/fonts/FuturaPT-Medium/FuturaPT-Medium.woff") format("woff"),
+  url("/fonts/FuturaPT-Medium/FuturaPT-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
 .application--wrap {
   font-family: Futura-Medium;
   font-size: 24px;
