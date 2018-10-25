@@ -1,0 +1,145 @@
+.application--wrap {
+  font-family: Futura-Medium;
+  font-size: 24px;
+  color: #ffffff;
+  letter-spacing: 5px;
+  background-image: linear-gradient(-157deg, #32353D 0%, #212226 41%, #282A2F 97%);
+  @media only screen and (min-width: 600px) {
+    background-image: linear-gradient(-157deg, #32353D 0%, #212226 41%, #212327 44%, #282A2F 97%);
+  }
+}
+.theme--light.v-toolbar {
+  background: transparent;
+  box-shadow: none;
+}
+.bearle__menu {
+  background: #595b61;
+  pointer-events: auto;
+  will-change: transform;
+  z-index: 3;
+  -webkit-overflow-scrolling: touch;
+  position: absolute;
+  overflow: hidden;
+  transition: all 1s;
+  width: 100%;
+  height: 100%;
+  @media only screen and (min-width: 600px) {
+    width: 440px;
+  }
+  ul {
+    margin-top: calc(100px + 10%);
+    @media only screen and (min-width: 600px) {
+      margin-top: 430px;
+    }
+    li {
+      list-style: none;
+      padding: 20px 50px;
+      white-space: nowrap;
+      a {
+        color: white;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .bearle__menu__calculator {
+        width: 42px;
+        height: 72px;
+        vertical-align: middle;
+      }
+    }
+  }
+  .bearle__menu__title {
+    position: absolute;
+    right: -10px;
+    top: 220px;
+    span {
+      display: block;
+      transform: rotate(-90deg);
+      font-size: 24px;
+      color: #FFFFFF;
+      letter-spacing: 5px;
+      text-align: left;
+      line-height: 23px;
+    }
+  }
+}
+.bearle-transition {
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.5s;
+  }
+  &-enter-to,
+  &-leave {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @media only screen and (min-width: 600px) {
+      width: 440px;
+    }
+  }
+  &-enter,
+  &-leave-to {
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    @media only screen and (min-width: 600px) {
+      top: 60px;
+      left: 70px;
+    }
+  }
+}
+.theme--light.v-list {
+  background: transparent;
+}
+
+.bearle__burger {
+  position: absolute;
+  z-index: 30;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  @media only screen and (min-width: 600px) {
+    top: 60px;
+    left: 70px;
+    width: 60px;
+    height: 60px;
+  }
+  button {
+    position: relative;
+    outline: 0;
+    background: #595b61;
+    border-radius: 0;
+    width: 60px;
+    height: 60px;
+    &:before,
+    &:after {
+      content: '';
+      background-color: #fff;
+      display: block;
+      height: 2px;
+      left: calc(50% - 8px);
+      top: calc(50% - 3px);
+      position: absolute;
+      transform-origin: center;
+      transition-duration: 0.5s;
+      transition-property: background-color, opacity, transform;
+      transition-timing-function: ease-out;
+      width: 20px;
+    }
+    &:after {
+      top: calc(50% + 3px);
+    }
+  }
+}
+.bearle__burger.isactive button {
+  &:before {
+    transform: translateY(3px) rotate(-45deg);
+  }
+  &:after {
+    transform: translateY(-3px) rotate(45deg);
+  }
+}
