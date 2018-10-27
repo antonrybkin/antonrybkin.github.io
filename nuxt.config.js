@@ -75,6 +75,6 @@ module.exports = {
 
 export default {
   router: {
-    base: '/<repository-name>/'
+    base: '/bearle-nuxt/'
   }
 }

@@ -15,9 +15,8 @@
       md6>
       <div class="text-xs-center main--logo">
         <img
-          :style="{ width: $vuetify.breakpoint.xs ? '90%' : 'auto' }"
           src="images/Logo.png"
-          alt="">
+          alt="Bearle IT&ART">
       </div>
     </v-flex>
     <div class="bearle__footer__calculator">
@@ -27,6 +26,22 @@
     </div>
   </v-layout>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      sss: this.$vuetify.breakpoint.smAndUp
+    }
+  },
+  computed: {
+    imageSrc: function() {
+      let sss = this.$vuetify.breakpoint.xs ? 'false' : 'true'
+      return `images/Logo-` + sss + `.png`
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .main--contacts {
@@ -41,11 +56,7 @@
   text-decoration: none;
 }
 .main--logo {
-  padding-top: 243px;
   position: relative;
-  @media only screen and (min-width: 600px) {
-    padding-top: 304px;
-  }
   &:before {
     content: '<welcome to>';
     position: absolute;
@@ -55,6 +66,11 @@
     @media only screen and (min-width: 1025px) {
       font-size: 36px;
       margin: -80px 0 0 -270px;
+    }
+  }
+  img {
+    @media only screen and (max-width: 600px) {
+      width: 260px;
     }
   }
 }

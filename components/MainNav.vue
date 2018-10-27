@@ -36,19 +36,7 @@
 export default {
   data() {
     return {
-      clipped: true,
-      drawer: null,
-      fixed: false,
-      items: [
-        { title: 'Home page', to: '/' },
-        { title: 'Project', to: '/project', icon: 'calculator' },
-        { title: 'Services', to: '/services' },
-        { title: 'Blog', to: '/blog' },
-        { title: 'Company', to: '/company' },
-        { title: 'Contacts', to: '/contacts' }
-      ],
-      miniVariant: false,
-      right: true
+      drawer: false
     }
   }
 }
