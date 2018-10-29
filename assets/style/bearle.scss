@@ -7,16 +7,22 @@
   font-style: normal;
   font-weight: normal;
 }
+@font-face {
+  font-family: "FuturaBookC";
+  src: url("/fonts/FuturaBook/FuturaBookC.eot");
+  src: url("/fonts/FuturaBook/FuturaBookC.eot?#iefix") format("embedded-opentype"),
+  url("/fonts/FuturaBook/FuturaBookC.woff") format("woff"),
+  url("/fonts/FuturaBook/FuturaBookC.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
 
 .application--wrap {
   font-family: Futura-Medium;
   font-size: 24px;
   color: #ffffff;
   letter-spacing: 5px;
-  background-image: linear-gradient(-157deg, #32353D 0%, #212226 41%, #282A2F 97%);
-  @media only screen and (min-width: 600px) {
-    background-image: linear-gradient(-157deg, #32353D 0%, #212226 41%, #212327 44%, #282A2F 97%);
-  }
 }
 .theme--light.v-toolbar {
   background: transparent;
@@ -32,6 +38,9 @@
   width: 100%;
   min-height: 100%;
   overflow-x: hidden;
+  font-family: FuturaBookC;
+  font-size: 24px;
+  letter-spacing: 5px;
   @media only screen and (min-width: 600px) {
     width: 440px;
   }

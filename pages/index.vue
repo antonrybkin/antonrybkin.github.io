@@ -2,7 +2,8 @@
   <v-layout
     column
     justify-center
-    align-center>
+    align-center
+    class="main">
     <no-ssr>
       <nuxt-link
         v-if="$vuetify.breakpoint.smAndUp"
@@ -44,6 +45,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main {
+  background-image: linear-gradient(
+    -157deg,
+    #32353d 0%,
+    #212226 41%,
+    #282a2f 97%
+  );
+  @media only screen and (min-width: 600px) {
+    background-image: linear-gradient(
+      -157deg,
+      #32353d 0%,
+      #212226 41%,
+      #212327 44%,
+      #282a2f 97%
+    );
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    .flex {
+      max-height: 291px;
+    }
+  }
+}
 .main--contacts {
   position: absolute;
   top: 73px;
