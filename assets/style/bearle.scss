@@ -53,6 +53,7 @@
       list-style: none;
       padding: 20px 50px;
       white-space: nowrap;
+      transition: all 0.4s;
       a {
         color: white;
         text-decoration: none;
@@ -85,7 +86,7 @@
 .bearle-transition {
   &-enter-active,
   &-leave-active {
-    transition: all 0.5s;
+    transition: all 0.4s;
     overflow: hidden;
     min-height: 0;
   }
@@ -97,6 +98,13 @@
     height: 100%;
     @media only screen and (min-width: 600px) {
       width: 440px;
+    }
+    li {
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}){
+          margin-right: ($i * 10px) + 20px;
+        }
+      }
     }
   }
   &-enter,
