@@ -16,12 +16,15 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.0.0",
     "cross-env": "^5.2.0",
+    "element-ui": "^2.4.9",
     "nuxt": "^2.0.0",
+    "vue-drag-drop": "^1.1.4",
     "vuetify": "^1.2.4"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.4.1",
     "babel-eslint": "^8.2.1",
+    "babel-plugin-component": "^1.1.1",
     "eslint": "^5.0.1",
     "eslint-config-prettier": "^3.1.0",
     "eslint-loader": "^2.0.0",

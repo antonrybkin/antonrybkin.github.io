@@ -47,10 +47,10 @@
       :complete="e6 > 2"
       step="2">Step 2</v-stepper-step>
     <v-stepper-content step="2">
-      <v-card
-        color="grey lighten-1"
-        class="mb-5"
-        height="200px" />
+      <v-checkbox
+        :label="`I have a technical task*: ${checkbox.toString()}`"
+        v-model="checkbox" />
+      <files />
       <v-btn
         color="primary"
         @click="e6 = 3">Continue</v-btn>
@@ -62,10 +62,14 @@
       step="3">Step 3</v-stepper-step>
     <v-stepper-content
       step="3">
-      <v-card
-        color="grey lighten-1"
-        class="mb-5"
-        height="200px" />
+      <no-ssr>
+        <transfer
+          v-model="value2"
+          :filter-method="filterMethod"
+          :data="data2"
+          filterable
+          filter-placeholder="Search"/>
+      </no-ssr>
       <v-btn
         color="primary"
         @click="e6 = 4">Continue</v-btn>
@@ -87,11 +91,50 @@
 </template>
 
 <script>
+import Files from '../components/Files.vue'
+import { Transfer } from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+
 export default {
+  components: {
+    Files,
+    Transfer,
+    lang,
+    locale
+  },
   data() {
+    const generateData2 = _ => {
+      const data = []
+      const states = [
+        'California',
+        'Illinois',
+        'Maryland',
+        'Texas',
+        'Florida',
+        'Colorado',
+        'Connecticut '
+      ]
+      const initials = ['CA', 'IL', 'MD', 'TX', 'FL', 'CO', 'CT']
+      states.forEach((city, index) => {
+        data.push({
+          label: city,
+          key: index,
+          initial: initials[index]
+        })
+      })
+      return data
+    }
     return {
       e6: 1,
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz']
+      checkbox: false,
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      data2: generateData2(),
+      value2: [],
+      filterMethod(query, item) {
+        return item.initial.toLowerCase().indexOf(query.toLowerCase()) > -1
+      }
     }
   }
 }
