@@ -1,5 +1,15 @@
 const pkg = require('./package')
 
+// only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
+// const routerBase =
+//   process.env.DEPLOY_ENV === 'GH_PAGES'
+//     ? {
+//         router: {
+//           base: '/<repository-name>/'
+//         }
+//       }
+//     : {}
+
 module.exports = {
   mode: 'universal',
 
@@ -21,6 +31,9 @@ module.exports = {
           'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
       }
     ]
+  },
+  router: {
+    base: '/bearle-nuxt/'
   },
 
   /*
@@ -70,11 +83,5 @@ module.exports = {
         })
       }
     }
-  }
-}
-
-export default {
-  router: {
-    base: '/bearle-nuxt/'
   }
 }
