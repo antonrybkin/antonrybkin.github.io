@@ -268,64 +268,67 @@ export default {
 }
 .el-transfer {
   min-width: 640px;
-}
-.el-transfer-panel {
-  border-radius: 0;
-  border: 1px solid #979797;
-  width: 250px;
-  height: 432px;
-  margin: 20px 0;
-}
-.el-transfer-panel__header,
-.el-transfer-panel__item .el-checkbox__input {
-  display: none;
-}
-.el-transfer-panel__filter .el-input__inner {
-  border-radius: 0;
-  border: 0;
-  border-bottom: 1px solid #5a5a5a;
-  padding-left: 40px;
-  font-family: FuturaBookC;
-  font-size: 20px;
-  color: #5a5a5a;
-  letter-spacing: 2.08px;
-  text-align: left;
-}
-.el-transfer__buttons {
-  padding: 10px;
-}
-.el-transfer__button {
-  color: white;
-  background: #a0a0a0;
-  border-color: #a0a0a0;
-}
-.el-transfer__button.is-disabled,
-.el-transfer__button.is-disabled:hover {
-  background: white;
-}
-.el-transfer-panel__list.is-filterable {
-  padding: 0 10px;
-  height: auto;
-}
-.el-transfer-panel__item.el-checkbox {
-  display: inline-block;
-  border: 1px solid #5a5a5a;
-  margin: 5px;
-  padding: 0;
-  height: auto;
-  .el-checkbox__label {
-    padding: 0 15px;
-    font-size: 14px;
-    color: #5a5a5a;
-    letter-spacing: 1.46px;
+  .el-transfer-panel {
+    border-radius: 0;
+    border: 1px solid #979797;
+    width: 250px;
+    height: 432px;
+    margin: 20px 0;
   }
-  &.is-checked {
-    background: #5a5a5a;
+  .el-transfer-panel__header,
+  .el-transfer-panel__item .el-checkbox__input {
+    display: none;
+  }
+  .el-transfer-panel__filter .el-input__inner {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid #5a5a5a;
+    padding-left: 40px;
+    font-size: 20px;
+    color: #5a5a5a;
+    letter-spacing: 2.08px;
+    text-align: left;
+  }
+  .el-transfer__buttons {
+    padding: 10px;
+  }
+  .el-transfer__button {
+    background: #a0a0a0;
+    border-color: #a0a0a0;
+    color: #5a5a5a;
+  }
+  .el-transfer__button.is-disabled,
+  .el-transfer__button.is-disabled:hover {
+    background: white;
+  }
+  .el-transfer__button:not(.is-disabled) {
+    color: white;
+  }
+  .el-transfer-panel__list.is-filterable {
+    padding: 0 10px;
+    height: auto;
+  }
+  .el-transfer-panel__item.el-checkbox {
+    display: inline-block;
+    border: 1px solid #5a5a5a;
+    margin: 5px;
+    padding: 0;
+    height: auto;
     .el-checkbox__label {
-      color: white;
+      padding: 0 15px;
+      font-size: 14px;
+      color: #5a5a5a;
+      letter-spacing: 1.46px;
+    }
+    &.is-checked {
+      background: #5a5a5a;
+      .el-checkbox__label {
+        color: white;
+      }
     }
   }
 }
+
 .v-textarea textarea {
   border: 1px solid #5a5a5a;
   margin-top: 15px;
