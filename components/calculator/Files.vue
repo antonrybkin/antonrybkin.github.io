@@ -37,6 +37,7 @@ export default {
   border-left: 2px solid #ddd;
   color: #5a5a5a;
   font-size: 20px;
+  margin-bottom: 30px;
   div {
     opacity: 0.2;
     height: 120px;
