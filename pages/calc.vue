@@ -365,7 +365,7 @@ export default {
   .v-stepper__step:not(.v-stepper__step--active) {
     display: none;
   }
-  .el-transfer-panel {
+  .el-transfer .el-transfer-panel {
     height: 250px;
   }
   .el-transfer .el-transfer__buttons {
