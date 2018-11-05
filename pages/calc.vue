@@ -368,7 +368,7 @@ export default {
   .el-transfer-panel {
     height: 250px;
   }
-  .el-transfer__buttons {
+  .el-transfer .el-transfer__buttons {
     display: block;
     .el-transfer__button {
       display: inline-block;
