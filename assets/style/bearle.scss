@@ -47,7 +47,7 @@
   ul {
     margin-top: calc(100px + 10%);
     @media only screen and (min-width: 600px) {
-      margin-top: 430px;
+      margin-top: 120px; /* было 430 в исходнике с плашкой "categories" */
     }
     li {
       list-style: none;
@@ -61,7 +61,7 @@
           text-decoration: underline;
         }
       }
-      .bearle__menu__calculator {
+      .bearle__menu__icon {
         width: 42px;
         height: 72px;
         vertical-align: middle;
@@ -100,7 +100,7 @@
       width: 440px;
     }
     li {
-      @for $i from 1 through 6 {
+      @for $i from 1 through 10 { /* Если пунктов меню будет больше 10ти - увеличить число */
         &:nth-child(#{$i}){
           margin-right: ($i * 10px) + 20px;
         }

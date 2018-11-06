@@ -32,9 +32,9 @@ module.exports = {
       }
     ]
   },
-  router: {
-    base: '/bearle-nuxt/'
-  },
+  // router: {
+  //   base: '/bearle-nuxt/'
+  // },
 
   /*
   ** Customize the progress-bar color

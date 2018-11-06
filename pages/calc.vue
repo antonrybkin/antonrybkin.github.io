@@ -54,7 +54,12 @@
             <v-checkbox
               :label="`I have a technical task*: ${checkbox.toString()}`"
               v-model="checkbox" />
-            <files />
+            <label>
+              <files />
+              <input
+                type="file"
+                class="hidden-file">
+            </label>
             <v-btn
               color="secondary"
               @click="e6 = 3">Continue</v-btn>
@@ -265,6 +270,10 @@ export default {
   font-size: 48px;
   color: #5a5a5a;
   letter-spacing: 5px;
+}
+.hidden-file {
+  position: fixed;
+  top: -100em;
 }
 .el-transfer {
   min-width: 640px;

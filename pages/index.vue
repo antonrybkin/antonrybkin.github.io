@@ -28,22 +28,6 @@
   </v-layout>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      sss: this.$vuetify.breakpoint.smAndUp
-    }
-  },
-  computed: {
-    imageSrc: function() {
-      let sss = this.$vuetify.breakpoint.xs ? 'false' : 'true'
-      return `images/Logo-` + sss + `.png`
-    }
-  }
-}
-</script>
-
 <style lang="scss" scoped>
 .main {
   background-image: linear-gradient(
@@ -69,6 +53,7 @@ export default {
   }
 }
 .main--contacts {
+  font-family: FuturaBookC;
   position: absolute;
   top: 73px;
   right: 52px;
@@ -76,7 +61,6 @@ export default {
   font-size: 36px;
   color: #ffffff;
   letter-spacing: 5px;
-  text-align: left;
   text-decoration: none;
 }
 .main--logo {
