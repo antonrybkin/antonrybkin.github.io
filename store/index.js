@@ -17,7 +17,7 @@ const store = () =>
         },
         { name: 'Services', link: '/', order: 30 },
         { name: 'Blog', link: '/', order: 40 },
-        { name: 'Company', link: '/', order: 50 },
+        { name: 'Company', link: '/about', order: 50 },
         { name: 'Contacts', link: '/', order: 60 }
       ]
     },

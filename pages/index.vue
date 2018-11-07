@@ -47,6 +47,7 @@
     position: fixed;
     width: 100%;
     height: 100%;
+    color: #ffffff;
     .flex {
       max-height: 291px;
     }
@@ -71,6 +72,7 @@
     margin: -50px 0 0 15px;
     opacity: 0.2;
     font-size: 24px;
+    color: #fff;
     @media only screen and (min-width: 1025px) {
       font-size: 36px;
       margin: -80px 0 0 -270px;
