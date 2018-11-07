@@ -18,6 +18,7 @@ export default {
   min-height: 100%;
   padding: 30px 50px 80px 50px;
   background-image: linear-gradient(-180deg, #515359 0%, #46484e 100%);
+  color: #fff;
   position: relative;
   .right-bloсk__title {
     font-family: Futura-Bold;
@@ -30,6 +31,7 @@ export default {
   }
   p {
     letter-spacing: 3.33px;
+    color: #fff;
   }
   .right-bloсk__price {
     position: absolute;
