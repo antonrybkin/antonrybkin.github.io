@@ -16,7 +16,7 @@
       md6>
       <div class="text-xs-center main--logo">
         <img
-          src="images/Logo.png"
+          src="images/logo.svg"
           alt="Bearle IT&ART">
       </div>
     </v-flex>
@@ -69,18 +69,35 @@
   &:before {
     content: '<welcome to>';
     position: absolute;
-    margin: -50px 0 0 15px;
+    margin: -50px 0 0 0;
     opacity: 0.2;
+    font-family: Futura-Medium;
     font-size: 24px;
+    letter-spacing: 2px;
     color: #fff;
     @media only screen and (min-width: 1025px) {
       font-size: 36px;
-      margin: -80px 0 0 -270px;
+      margin: -80px 0 0 -259px;
     }
   }
+  &:after {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-image: linear-gradient(
+      -180deg,
+      rgba(44, 53, 69, 0) 0%,
+      rgba(33, 38, 45, 0.1) 82%,
+      rgba(32, 34, 38, 0.4) 98%
+    );
+  }
   img {
-    @media only screen and (max-width: 600px) {
-      width: 260px;
+    width: 228px;
+    @media only screen and (min-width: 601px) {
+      width: 406px;
     }
   }
 }
