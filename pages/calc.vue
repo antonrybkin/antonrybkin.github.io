@@ -7,6 +7,8 @@
       <v-stepper
         v-model="e6"
         vertical>
+
+        <!-- STEP 1 -->
         <v-stepper-step
           :complete="e6 > 1"
           step="1">
@@ -15,7 +17,7 @@
         <v-stepper-content step="1">
           <v-container
             fluid
-            grid-list-xl>
+            grid-list-lg>
             <v-layout
               wrap>
               <v-flex
@@ -26,7 +28,10 @@
                   Category
                 </template>
                 <v-select
+                  v-model="category"
                   :items="categories"
+                  :hint="`${category}`"
+                  item-text="category"
                   label="Category" />
               </v-flex>
               <v-flex
@@ -34,16 +39,21 @@
                 sm6
                 d-flex>
                 <v-select
+                  v-model="theme"
                   :items="themes"
+                  :hint="`${theme}`"
+                  item-text="theme"
                   label="Theme"/>
               </v-flex>
               <v-btn
                 color="secondary"
+                class="ml-2"
                 @click="e6 = 2">Continue</v-btn>
             </v-layout>
           </v-container>
         </v-stepper-content>
 
+        <!-- STEP 2 -->
         <v-stepper-step
           :complete="e6 > 2"
           step="2">Step 2</v-stepper-step>
@@ -52,15 +62,21 @@
             fluid
             grid-list-xl>
             <v-checkbox
-              :label="`I have a technical task*: ${checkbox.toString()}`"
-              v-model="checkbox" />
-            <label>
+              :label="`I have a technical task*`"
+              v-model="IHaveTT" />
+            <label v-if="IHaveTT">
               <files />
               <input
                 type="file"
                 class="hidden-file">
             </label>
+            <p>* Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus cumque dignissimos dolore eius esse expedita facilis illum ipsa magni minima, nostrum odit perferendis quae quam recusandae reiciendis sequi, tempore totam!</p>
             <v-btn
+              v-if="!IHaveTT"
+              color="secondary"
+              @click="e6 = 3">Skip</v-btn>
+            <v-btn
+              v-if="IHaveTT"
               color="secondary"
               @click="e6 = 3">Continue</v-btn>
             <v-btn
@@ -69,6 +85,7 @@
           </v-container>
         </v-stepper-content>
 
+        <!-- STEP 3 -->
         <v-stepper-step
           :complete="e6 > 3"
           step="3">Step 3</v-stepper-step>
@@ -77,7 +94,7 @@
           <v-container
             fluid
             grid-list-xl>
-            <p>Technology used</p>
+            <div>Technology used</div>
             <no-ssr>
               <transfer
                 v-model="value2"
@@ -95,6 +112,7 @@
           </v-container>
         </v-stepper-content>
 
+        <!-- STEP 4 -->
         <v-stepper-step
           :complete="e6 > 4"
           step="4">Step 4</v-stepper-step>
@@ -102,39 +120,46 @@
           <v-container
             fluid
             grid-list-xl>
-            <v-menu
-              ref="menu"
-              :close-on-content-click="false"
-              v-model="menu"
-              :nudge-right="40"
-              :return-value.sync="date"
-              lazy
-              transition="scale-transition"
-              offset-y
-              full-width
-              min-width="290px"
-            >
-              <v-text-field
-                slot="activator"
-                v-model="date"
-                label="Timelines"
-                prepend-icon="event"
-                readonly />
-              <v-date-picker
-                v-model="date"
-                no-title
-                scrollable>
-                <v-spacer />
-                <v-btn
-                  flat
-                  color="secondary"
-                  @click="menu = false">Cancel</v-btn>
-                <v-btn
-                  flat
-                  color="secondary"
-                  @click="$refs.menu.save(date)">OK</v-btn>
-              </v-date-picker>
-            </v-menu>
+            <v-layout
+              wrap>
+              <v-flex
+                xs12
+                sm6
+                d-flex>
+                <v-menu
+                  ref="menu"
+                  :close-on-content-click="false"
+                  v-model="menu"
+                  :nudge-right="40"
+                  :return-value.sync="date"
+                  lazy
+                  transition="scale-transition"
+                  offset-y
+                  full-width
+                  min-width="290px">
+                  <v-text-field
+                    slot="activator"
+                    v-model="date"
+                    label="Timelines"
+                    prepend-icon="event"
+                    readonly />
+                  <v-date-picker
+                    v-model="date"
+                    no-title
+                    scrollable>
+                    <v-spacer />
+                    <v-btn
+                      flat
+                      color="secondary"
+                      @click="menu = false">Cancel</v-btn>
+                    <v-btn
+                      flat
+                      color="secondary"
+                      @click="$refs.menu.save(date)">OK</v-btn>
+                  </v-date-picker>
+                </v-menu>
+              </v-flex>
+            </v-layout>
             <v-btn
               color="secondary"
               @click="e6 = 5">Continue</v-btn>
@@ -144,6 +169,7 @@
           </v-container>
         </v-stepper-content>
 
+        <!-- STEP 5 -->
         <v-stepper-step step="5">Step 5</v-stepper-step>
         <v-stepper-content step="5">
           <v-container
@@ -158,6 +184,7 @@
                   label="Phone"
                   placeholder="+X(XXX) XXX-XX-XX"
                   mb-5/>
+                <div class="vertical-spacer"/>
                 <v-text-field
                   label="E-mail"
                   placeholder="example@example.com"/>
@@ -174,7 +201,9 @@
             </v-layout>
             <v-btn
               color="secondary"
-              @click="e6 = 1">send request</v-btn>
+              @click="e6 = 1">
+              <router-link to="/">send request</router-link>
+            </v-btn>
             <v-btn
               color="secondary"
               @click="e6 = 4">Back</v-btn>
@@ -236,7 +265,9 @@ export default {
     }
     return {
       e6: 1,
-      checkbox: false,
+      IHaveTT: false,
+      category: 'Website',
+      theme: 'Casino',
       categories: ['Website', 'Mobile app', 'Fizz', 'Buzz'],
       themes: ['Casino', 'Bar', 'Fizz', 'Buzz'],
       data2: generateData2(),
@@ -261,15 +292,27 @@ export default {
   font-size: 20px;
   color: #5a5a5a;
   letter-spacing: 2.08px;
+  .v-btn {
+    margin-left: 0;
+  }
 }
-.v-stepper__step__step {
+.v-stepper--vertical .v-stepper__step {
   letter-spacing: 0;
+}
+.v-stepper--vertical .v-stepper__content {
+  padding: 16px 40px 16px 10px;
+}
+.v-input--selection-controls {
+  margin-top: 0;
 }
 .v-stepper__label {
   font-family: FuturaBookC;
   font-size: 48px;
   color: #5a5a5a;
   letter-spacing: 5px;
+}
+.v-text-field .v-label--active {
+  transform: none;
 }
 .hidden-file {
   position: fixed;
@@ -282,7 +325,7 @@ export default {
     border: 1px solid #979797;
     width: 250px;
     height: 432px;
-    margin: 20px 0;
+    margin: 15px 0;
   }
   .el-transfer-panel__header,
   .el-transfer-panel__item .el-checkbox__input {
@@ -302,9 +345,15 @@ export default {
     padding: 10px;
   }
   .el-transfer__button {
-    background: #a0a0a0;
+    background: #47494f;
     border-color: #a0a0a0;
+    will-change: box-shadow;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
     color: #5a5a5a;
+    &:hover {
+      background: #616161;
+    }
   }
   .el-transfer__button.is-disabled,
   .el-transfer__button.is-disabled:hover {
@@ -337,17 +386,22 @@ export default {
     }
   }
 }
-
 .v-textarea textarea {
   border: 1px solid #5a5a5a;
-  margin-top: 15px;
   padding: 20px;
 }
-.v-label {
+.v-label.v-label--active.theme--light {
   font-size: 20px;
+  position: relative;
+  margin-top: -36px;
 }
-.grid-list-xl .theme--light.v-messages {
-  min-height: 58px;
+.v-btn__content a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.vertical-spacer {
+  visibility: hidden;
+  height: 31px;
 }
 @media only screen and (min-width: 601px) {
   .v-stepper {
@@ -355,10 +409,11 @@ export default {
   }
   .v-stepper--vertical .v-stepper__step__step,
   .v-stepper--vertical > .v-stepper__content {
-    margin-right: 42px;
+    margin-right: 34px;
   }
   .v-stepper--vertical .v-stepper__content {
-    padding-right: 16px;
+    padding-right: 1px;
+    padding-left: 23px;
   }
 }
 @media only screen and (max-width: 600px) {

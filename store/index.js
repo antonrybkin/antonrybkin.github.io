@@ -15,7 +15,7 @@ const store = () =>
           order: 20,
           icon: '/images/calculator-white.svg'
         },
-        { name: 'Services', link: '/', order: 30 },
+        { name: 'Services', link: '/services', order: 30 },
         { name: 'Blog', link: '/', order: 40 },
         { name: 'Company', link: '/about', order: 50 },
         { name: 'Contacts', link: '/', order: 60 }
