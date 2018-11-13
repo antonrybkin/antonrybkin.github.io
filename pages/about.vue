@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="bearle__about">About</div>
-    <div class="text-sm-right bearle__logo">
+    <div class="text-md-right bearle__logo">
       <img
         src="images/Logo-black.png"
         alt="Bearle IT&ART">
@@ -37,16 +37,6 @@
   </v-container>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      e6: 1
-    }
-  }
-}
-</script>
-
 <style lang="scss">
 .bearle__about {
   opacity: 0.2;
@@ -55,20 +45,23 @@ export default {
   color: #5d6169;
   margin: 90px 9px 0 9px;
   @media only screen and (min-width: 601px) {
-    margin: 0;
     font-size: 288px;
+    letter-spacing: 1px;
+  }
+  @media only screen and (min-width: 1024px) {
+    font-size: 327px;
     text-align: right;
   }
 }
 .bearle__logo {
-  margin: -30px 0 0 37px;
+  margin: -21px 0 0 37px;
   img {
     width: 80%;
     max-width: 302px;
   }
-  @media only screen and (min-width: 768px) {
-    margin-top: -160px;
-    margin-right: -105px;
+  @media only screen and (min-width: 1024px) {
+    margin-top: -144px;
+    margin-right: -75px;
     img {
       width: auto;
       max-width: 406px;
@@ -133,7 +126,7 @@ export default {
       border-radius: 50%;
     }
     .bearle__list__title {
-      margin: 30px 0 35px 0;
+      margin: 25px 0 35px 0;
       font-size: 24px;
       letter-spacing: 2.5px;
     }
