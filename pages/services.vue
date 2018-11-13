@@ -1,5 +1,6 @@
 <template>
   <v-container
+    :class="{ showed: $store.state.drawer }"
     fluid
     relative>
     <no-ssr>
@@ -57,7 +58,7 @@
           <v-layout wrap>
             <v-flex
               xs12
-              sm6>
+              md6>
               <div class="bearle__service">
                 <div class="bearle__service__title">Site</div>
                 <p>Lorem ipsum dolor sit amet, consectetur</p>
@@ -66,7 +67,7 @@
             </v-flex>
             <v-flex
               xs12
-              sm6>
+              md6>
               <div class="bearle__service">
                 <div class="bearle__service__title">Mobile App</div>
                 <p>Lorem ipsum dolor sit amet, consectetur</p>
@@ -75,7 +76,7 @@
             </v-flex>
             <v-flex
               xs12
-              sm6>
+              md6>
               <div class="bearle__service">
                 <div class="bearle__service__title">HL System</div>
                 <p>Lorem ipsum dolor sit amet, consectetur</p>
@@ -84,7 +85,7 @@
             </v-flex>
             <v-flex
               xs12
-              sm6>
+              md6>
               <div class="bearle__service">
                 <div class="bearle__service__title">Automation</div>
                 <p>Lorem ipsum dolor sit amet, consectetur</p>
@@ -189,7 +190,7 @@ export default {
   letter-spacing: 3.75px;
   height: 100%;
   min-height: 340px;
-  width: 85%;
+  max-width: 340px;
   position: relative;
   transition: all 0.5s;
   .bearle__service__title {
@@ -211,7 +212,7 @@ export default {
 }
 .bearle__services__more {
   position: absolute;
-  right: 20%;
+  right: 35px;
   top: 115px;
   cursor: pointer;
   font-family: FuturaBookC;
@@ -220,6 +221,7 @@ export default {
   span {
     display: block;
     position: relative;
+    background: #fff;
     transform: rotate(-90deg);
     transform-origin: right top;
     .material-icons {
@@ -248,7 +250,7 @@ export default {
     opacity: 1;
   }
 }
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 961px) {
   .bearle__services {
     max-width: 756px;
     &.active {
@@ -267,8 +269,8 @@ export default {
   .bearle__services__more {
     letter-spacing: 3.75px;
     font-size: 36px;
-    right: 25%;
     top: 46px;
+    right: 21%;
     transition: all 0.5s;
     span .material-icons {
       top: 10px;
@@ -280,7 +282,17 @@ export default {
     }
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 601px) and (max-width: 960px) {
+  .bearle__service {
+    padding: 40px 50px;
+    width: 340px;
+  }
+  .bearle__services__more {
+    top: 46px;
+    right: 33%;
+  }
+}
+@media only screen and (max-width: 600px) {
   .bearle__services {
     max-width: 96%;
     &.active {

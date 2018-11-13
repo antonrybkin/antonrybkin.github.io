@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container :class="{ showed: $store.state.drawer }">
     <div class="bearle__about">About</div>
     <div class="text-md-right bearle__logo">
       <img
@@ -15,7 +15,7 @@
           class="bearle__list__img"
           alt="Lorem ipsum">
         <div class="bearle__list__title">Lorem ipsum</div>
-        <p>Lorem ipsum dolor sit amet</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolor ipsum nam numquam optio, porro quisquam? Consequatur deleniti nulla sequi! Corporis exercitationem illum maiores quae recusandae rem repudiandae sed, vero!</p>
       </li>
       <li>
         <img
@@ -31,7 +31,7 @@
           class="bearle__list__img"
           alt="Lorem ipsum">
         <div class="bearle__list__title">Lorem ipsum</div>
-        <p>Lorem ipsum dolor sit amet</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea molestias praesentium provident qui repudiandae sapiente sint soluta, ullam. Amet dolorem eum expedita illum laboriosam libero natus quam, quod tempora. Illo?</p>
       </li>
     </ul>
   </v-container>
@@ -103,15 +103,22 @@
     vertical-align: top;
     text-align: center;
     list-style: none;
+    transition: all 0.2s;
     @media only screen and (min-width: 768px) {
       width: 32%;
       display: table-cell;
       height: 100%;
       padding: 50px 30px;
-    }
-    &:hover {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      border-radius: 20px;
+      p {
+        visibility: hidden;
+      }
+      &:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        p {
+          visibility: visible;
+        }
+      }
     }
     p {
       font-size: 14px;
