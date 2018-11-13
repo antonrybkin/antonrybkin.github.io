@@ -3,7 +3,7 @@
     row>
     <v-flex
       xs12
-      sm8>
+      md8>
       <v-stepper
         v-model="e6"
         vertical>
@@ -90,7 +90,8 @@
           :complete="e6 > 3"
           step="3">Step 3</v-stepper-step>
         <v-stepper-content
-          step="3">
+          step="3"
+          mr-0>
           <v-container
             fluid
             grid-list-xl>
@@ -213,7 +214,7 @@
     </v-flex>
     <v-flex
       xs12
-      sm4
+      md4
       hidden-sm-and-down>
       <right-block/>
     </v-flex>
@@ -353,6 +354,7 @@ export default {
     color: #5a5a5a;
     &:hover {
       background: #616161;
+      border-color: #a0a0a0;
     }
   }
   .el-transfer__button.is-disabled,
@@ -414,6 +416,7 @@ export default {
   .v-stepper--vertical .v-stepper__content {
     padding-right: 1px;
     padding-left: 23px;
+    margin-right: 0;
   }
 }
 @media only screen and (max-width: 600px) {
