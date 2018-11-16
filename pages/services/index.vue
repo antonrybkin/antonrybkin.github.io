@@ -1,147 +1,40 @@
 <template>
   <v-container
-    :class="{ showed: $store.state.drawer }"
+    :class="{ showed: $store.state.drawer, opened: isOpen }"
     fluid
     relative>
     <no-ssr>
       <siema
         ref="siema"
         :options="options"
-        :class="{ active: isOpen }"
+        :class="{ stretched: $store.state.drawer, active: isOpen }"
         class="bearle__services">
         <v-container
+          v-for="(row, i) in $store.state.services"
+          :key="i"
           fluid
           grid-list-xl>
           <v-layout wrap>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Site</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $800</div>
-              </div>
-            </v-flex>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Mobile App</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $1500</div>
-              </div>
-            </v-flex>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Block chain</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $17000</div>
-              </div>
-            </v-flex>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Replace wool</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $100</div>
-              </div>
-            </v-flex>
-          </v-layout>
-        </v-container>
-
-        <v-container
-          fluid
-          grid-list-xl>
-          <v-layout wrap>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Site</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $800</div>
-              </div>
-            </v-flex>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Mobile App</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $800</div>
-              </div>
-            </v-flex>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">HL System</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $17000</div>
-              </div>
-            </v-flex>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Automation</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $800</div>
-              </div>
-            </v-flex>
-          </v-layout>
-        </v-container>
-
-        <v-container
-          fluid
-          grid-list-xl>
-          <v-layout wrap>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Block chain</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $17000</div>
-              </div>
-            </v-flex>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Replace wool</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $100</div>
-              </div>
-            </v-flex>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Site</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $800</div>
-              </div>
-            </v-flex>
-            <v-flex
-              xs12
-              md6>
-              <div class="bearle__service">
-                <div class="bearle__service__title">Mobile App</div>
-                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                <div class="bearle__service__price">from $1500</div>
-              </div>
-            </v-flex>
+            <template
+              v-for="(item, index) in row">
+              <v-flex
+                :key="index"
+                xs12
+                md6>
+                <div class="bearle__service">
+                  <div class="bearle__service__title">{{ item.title }}</div>
+                  <p>{{ item.desc }}</p>
+                  <div class="bearle__service__price">from ${{ item.priceFrom }}</div>
+                </div>
+              </v-flex>
+            </template>
           </v-layout>
         </v-container>
       </siema>
       <div
         :class="{ active: isOpen }"
         class="bearle__services__more"
-        @click="isOpen = !isOpen"><span><i class="material-icons">keyboard_arrow_down</i> more services</span></div>
+        @click="more"><span><i class="material-icons">keyboard_arrow_down</i> more services</span></div>
       <div
         :class="{ active: isOpen }"
         class="bearle__services__nav">
@@ -167,11 +60,20 @@ export default {
     return {
       isOpen: false,
       options: {
-        draggable: true
+        draggable: true,
+        duration: 500
       }
     }
   },
   methods: {
+    more() {
+      if (this.isOpen) {
+        this.$refs.siema.goTo(0)
+      } else {
+        this.$refs.siema.next()
+      }
+      this.isOpen = !this.isOpen
+    },
     prev() {
       this.$refs.siema.prev()
     },
@@ -251,8 +153,14 @@ export default {
   }
 }
 @media only screen and (min-width: 961px) {
+  .container.fluid.relative {
+    max-width: 820px;
+  }
   .bearle__services {
     max-width: 756px;
+    &.stretched {
+      width: 756px;
+    }
     &.active {
       max-width: 100%;
     }
@@ -270,8 +178,9 @@ export default {
     letter-spacing: 3.75px;
     font-size: 36px;
     top: 46px;
-    right: 21%;
+    right: 40px;
     transition: all 0.5s;
+    transition-timing-function: ease;
     span .material-icons {
       top: 10px;
       left: -33px;
@@ -279,6 +188,17 @@ export default {
     &.active {
       right: 100%;
       width: 240px;
+    }
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .container.fluid.relative {
+    &.showed {
+      max-width: 1100px;
+      padding-left: 310px;
+    }
+    &.opened {
+      max-width: 100%;
     }
   }
 }

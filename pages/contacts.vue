@@ -7,8 +7,7 @@
       <h2>Address</h2>
       <p>1-ya Brestskaya 62</p>
       <h2>Phone</h2>
-      <p>+7 (916)108-79-57</p>
-      <p>Begel Valeriy</p>
+      <p>+7 (916)108-79-57<br> Begel Valeriy</p>
       <h2>E-mail</h2>
       <p>Begel.V@bearle.ru</p>
     </address>
