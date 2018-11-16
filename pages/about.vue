@@ -43,26 +43,29 @@
   font-family: Futura-Medium;
   font-size: 72px;
   color: #5d6169;
+  max-width: 900px;
   margin: 90px 9px 0 9px;
   @media only screen and (min-width: 601px) {
     font-size: 288px;
     letter-spacing: 1px;
   }
   @media only screen and (min-width: 1024px) {
+    margin-right: auto;
+    margin-left: auto;
     font-size: 327px;
     text-align: right;
   }
 }
 .bearle__logo {
-  margin: -21px 0 0 37px;
+  max-width: 900px;
+  margin: auto;
   img {
+    margin: -21px 0 0 37px;
     width: 80%;
     max-width: 302px;
-  }
-  @media only screen and (min-width: 1024px) {
-    margin-top: -144px;
-    margin-right: -75px;
-    img {
+    @media only screen and (min-width: 1024px) {
+      margin-top: -144px;
+      margin-right: -84px;
       width: auto;
       max-width: 406px;
     }

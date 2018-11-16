@@ -25,6 +25,7 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      //{ rel: 'manifest', href: '/manifest.json' },
       {
         rel: 'stylesheet',
         href:
@@ -55,6 +56,7 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios'
   ],
@@ -63,6 +65,10 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+  manifest: {
+    background_color: '#22242b',
+    theme_color: '#22242b'
   },
 
   /*

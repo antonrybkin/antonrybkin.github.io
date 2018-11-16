@@ -40,6 +40,12 @@ h1 {
   font-size: 64px;
   color: #2A2C31;
 }
+h2 {
+  font-family: Futura-Bold;
+  font-size: 36px;
+  color: #2A2C31;
+  margin-bottom: 16px;
+}
 p {
   font-family: Futura-Medium;
   font-size: 16px;
@@ -57,7 +63,7 @@ input, textarea, select, .v-input {
   font-size: 24px;
   line-height: normal;
   color: #000;
-  letter-spacing: 5px;
+  letter-spacing: 0;
   background: white;
   .container {
     @media only screen and (min-width: 1280px) {
