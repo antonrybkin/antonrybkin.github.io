@@ -81,7 +81,7 @@
     font-family: FuturaPT-Book;
     font-weight: lighter;
   }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 769px) {
     margin-top: 150px;
     font-size: 48px;
   }
@@ -94,7 +94,7 @@
   color: #9c9c9c;
   text-align: center;
   letter-spacing: 0;
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 769px) {
     font-size: 24px;
   }
 }
@@ -107,7 +107,7 @@
     text-align: center;
     list-style: none;
     transition: all 0.2s;
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 769px) {
       width: 32%;
       display: table-cell;
       height: 100%;
@@ -126,7 +126,7 @@
     p {
       font-size: 14px;
       letter-spacing: 1.46px;
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: 769px) {
         text-align: left;
       }
     }

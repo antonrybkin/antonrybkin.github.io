@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <header>
     <transition name="bearle-transition">
       <nav
         v-on-clickaway="clickAway"
@@ -29,11 +29,9 @@
     <div
       :class="{isactive: $store.state.drawer}"
       class="bearle__burger">
-      <button
-        :ripple="false"
-        type="button"
-        @click="$store.commit('menuToggle')">&nbsp;</button></div>
-  </div>
+      <div
+        @click="$store.commit('menuToggle')">&nbsp;</div></div>
+  </header>
 </template>
 
 <script>
