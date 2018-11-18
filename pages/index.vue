@@ -7,7 +7,7 @@
     <no-ssr>
       <nuxt-link
         v-if="$vuetify.breakpoint.smAndUp"
-        to="/"
+        to="/contacts"
         class="main--contacts">Contacts</nuxt-link>
     </no-ssr>
     <v-flex

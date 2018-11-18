@@ -296,6 +296,15 @@ export default {
   .v-btn {
     margin-left: 0;
   }
+  input,
+  textarea,
+  select,
+  .v-input {
+    font-family: FuturaBookC;
+    font-size: 20px;
+    color: #5a5a5a;
+    letter-spacing: 2.08px;
+  }
 }
 .v-stepper--vertical .v-stepper__step {
   letter-spacing: 0;
@@ -311,9 +320,6 @@ export default {
   font-size: 48px;
   color: #5a5a5a;
   letter-spacing: 5px;
-}
-.v-text-field .v-label--active {
-  transform: none;
 }
 .hidden-file {
   position: fixed;

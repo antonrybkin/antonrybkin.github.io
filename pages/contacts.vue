@@ -3,18 +3,29 @@
     <div
       class="bearle__contacts__close"
       @click="back">Contacts</div>
-    <address>
+    <div
+      class="bearle__contacts__close--mobile"
+      @click="back">Close</div>
+    <address
+      :class="{ active: mobileFeedBack }">
       <h2>Address</h2>
       <p>1-ya Brestskaya 62</p>
       <h2>Phone</h2>
       <p>+7 (916)108-79-57<br> Begel Valeriy</p>
       <h2>E-mail</h2>
       <p>Begel.V@bearle.ru</p>
+      <div
+        class="bearle__contacts__feedback-link"
+        @click="mobileFeedBack = true">Feeedback <i class="material-icons">keyboard_arrow_right</i></div>
     </address>
     <v-container
+      :class="{ active: mobileFeedBack }"
       grid-list-lg
       class="bearle__contacts__feedback">
       <form action="/contacts">
+        <div
+          class="bearle__contacts__adress-link"
+          @click="mobileFeedBack = false"><i class="material-icons">keyboard_arrow_left</i> Contacts</div>
         <h2>Feedback</h2>
         <v-layout wrap>
           <v-flex
@@ -51,9 +62,14 @@
 
 <script>
 export default {
+  data() {
+    return {
+      mobileFeedBack: false
+    }
+  },
   methods: {
     back() {
-      router.go(-1)
+      window.history.back()
     }
   }
 }
@@ -61,48 +77,108 @@ export default {
 
 <style lang="scss">
 .bearle__contacts {
-  background: url('/images/map.jpg');
-  background-size: cover;
   max-width: 100%;
-  height: 100%;
-  padding: 202px 70px 82px 70px;
-  position: relative;
-  /*background-image: linear-gradient(
-    -90deg,
-    rgba(49, 51, 58, 0.3) 0%,
-    rgba(42, 44, 49, 0.7) 100%
-  ); */
+  overflow: hidden;
   .bearle__contacts__close {
     position: absolute;
     top: 73px;
     right: 70px;
+    padding-right: 39px;
     font-family: Futura-Medium;
     font-size: 36px;
     color: #fff;
     letter-spacing: 5px;
-    text-align: left;
     cursor: pointer;
+    &:before,
+    &:after {
+      content: '';
+      background-color: #fff;
+      display: block;
+      height: 2px;
+      right: 0;
+      top: 27px;
+      position: absolute;
+      width: 19px;
+    }
+    &:before {
+      transform: rotate(-45deg);
+    }
+    &:after {
+      transform: rotate(45deg);
+    }
   }
   address {
-    float: right;
-    max-width: 454px;
-    height: 100%;
-    padding: 101px 123px;
-    background: #fff;
+    padding: 135px 40px 40px 40px;
     text-align: right;
     font-family: Futura-Medium;
     font-style: normal;
+    transition: all 0.5s;
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    &.active {
+      right: 200%;
+    }
+    h2 {
+      padding-top: 15px;
+    }
     p {
       font-size: 24px;
     }
   }
+  .bearle__contacts__close--mobile {
+    position: absolute;
+    top: 39px;
+    right: 27px;
+    z-index: 20;
+    padding-right: 19px;
+    font-family: Futura-Bold;
+    font-size: 14px;
+    color: #000;
+    letter-spacing: 2.92px;
+    &:before,
+    &:after {
+      content: '';
+      background-color: #000;
+      display: block;
+      height: 2px;
+      right: 0;
+      top: 10px;
+      position: absolute;
+      width: 18px;
+    }
+    &:before {
+      transform: rotate(-45deg);
+    }
+    &:after {
+      transform: rotate(45deg);
+    }
+  }
+}
+.bearle__contacts__feedback-link {
+  padding-top: 60px;
+  .material-icons {
+    vertical-align: sub;
+  }
+}
+.bearle__contacts__adress-link {
+  padding-bottom: 60px;
+  .material-icons {
+    vertical-align: sub;
+  }
 }
 .bearle__contacts__feedback {
-  padding: 30px;
+  position: absolute;
+  right: -100%;
+  z-index: 10;
   margin: 0;
-  background: #fff;
-  max-width: 685px;
   height: 100%;
+  letter-spacing: 0;
+  transition: all 0.5s;
+  padding: 135px 40px 40px 40px;
+  &.active {
+    right: 0;
+  }
   textarea {
     border: 1px solid #595b61;
     height: 304px;
@@ -128,10 +204,54 @@ export default {
   }
   .v-label.v-label--active.theme--light {
     position: relative;
-    margin-top: -10px;
+    margin-top: -43px;
     font-family: Futura-Medium;
     font-size: 24px;
     color: #000000;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .bearle__contacts {
+    background: url('/images/map.jpg');
+    background-size: cover;
+    height: 100%;
+    padding: 202px 70px 82px 70px;
+    /*background-image: linear-gradient(
+      -90deg,
+      rgba(49, 51, 58, 0.3) 0%,
+      rgba(42, 44, 49, 0.7) 100%
+    ); */
+    address {
+      position: static;
+      float: right;
+      max-width: 454px;
+      height: 100%;
+      background: #fff;
+    }
+  }
+  .bearle__contacts__feedback {
+    position: static;
+    background: #fff;
+    width: 55%;
+    max-width: 685px;
+    padding: 30px;
+  }
+  .bearle__contacts__feedback-link,
+  .bearle__contacts__adress-link,
+  .bearle__contacts__close--mobile {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1281px) {
+  .bearle__contacts {
+    address {
+      padding: 101px 123px;
+    }
+  }
+}
+@media only screen and (min-width: 1901px) {
+  .bearle__contacts__feedback {
+    max-width: 70%;
   }
 }
 </style>
