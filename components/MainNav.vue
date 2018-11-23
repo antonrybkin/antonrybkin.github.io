@@ -2,7 +2,6 @@
   <header>
     <transition name="bearle-transition">
       <nav
-        v-on-clickaway="clickAway"
         v-if="$store.state.drawer"
         class="bearle__menu"
       >
@@ -35,18 +34,18 @@
 </template>
 
 <script>
-import { mixin as clickaway } from 'vue-clickaway'
+//import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
-  mixins: [clickaway],
+  //mixins: [clickaway],
   methods: {
+    // clickAway: function(e) {
+    //   this.$store.state.drawer = false
+    // },
     closeMenu: function(e) {
       if (this.$vuetify.breakpoint.mdAndDown) {
         this.$store.state.drawer = false
       }
-    },
-    clickAway: function(e) {
-      this.$store.state.drawer = false
     }
   }
 }

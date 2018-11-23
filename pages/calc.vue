@@ -66,9 +66,6 @@
               v-model="IHaveTT" />
             <label v-if="IHaveTT">
               <files />
-              <input
-                type="file"
-                class="hidden-file">
             </label>
             <p>* Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus cumque dignissimos dolore eius esse expedita facilis illum ipsa magni minima, nostrum odit perferendis quae quam recusandae reiciendis sequi, tempore totam!</p>
             <v-btn
@@ -182,6 +179,7 @@
                 xs12
                 sm6>
                 <v-text-field
+                  mask="+#(###) ###-##-##"
                   label="Phone"
                   placeholder="+X(XXX) XXX-XX-XX"
                   mb-5/>
@@ -224,6 +222,7 @@
 <script>
 import Files from '../components/calculator/Files.vue'
 import RightBlock from '../components/calculator/RightBlock.vue'
+import { TheMask } from 'vue-the-mask'
 import { Transfer } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import lang from 'element-ui/lib/locale/lang/en'
@@ -234,6 +233,7 @@ export default {
   components: {
     Files,
     RightBlock,
+    TheMask,
     Transfer,
     lang,
     locale
@@ -322,8 +322,7 @@ export default {
   letter-spacing: 5px;
 }
 .hidden-file {
-  position: fixed;
-  top: -100em;
+  position: static;
 }
 .el-transfer {
   min-width: 640px;
@@ -348,6 +347,12 @@ export default {
     letter-spacing: 2.08px;
     text-align: left;
   }
+  div:nth-child(3) .el-transfer-panel__filter {
+    input,
+    span {
+      display: none;
+    }
+  }
   .el-transfer__buttons {
     padding: 10px;
   }
@@ -357,6 +362,7 @@ export default {
     will-change: box-shadow;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
       0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    height: 36px;
     color: #5a5a5a;
     &:hover {
       background: #616161;
@@ -429,8 +435,17 @@ export default {
   .v-stepper__step__step {
     display: none;
   }
-  .v-stepper--vertical .v-stepper__content {
-    margin-left: 0;
+  .v-stepper--vertical {
+    .v-stepper__content {
+      display: none;
+      margin-left: 0;
+    }
+    .v-stepper__step--active {
+      padding-top: 0;
+      & + .v-stepper__content {
+        display: block;
+      }
+    }
   }
   .theme--light.v-stepper--vertical .v-stepper__content:not(:last-child) {
     border: 0;

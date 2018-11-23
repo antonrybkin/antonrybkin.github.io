@@ -2,7 +2,11 @@
   <div
     class="drop">
     <drop
+      v-if="$vuetify.breakpoint.smAndUp"
       @drop="handleDrop">drag and drop</drop>
+    <input
+      type="file"
+      class="hidden-file">
   </div>
 </template>
 
@@ -46,6 +50,15 @@ export default {
     justify-content: center;
     display: table-cell;
     width: 100%;
+  }
+}
+.hidden-file {
+  width: 100%;
+}
+@media only screen and (min-width: 601px) {
+  .hidden-file {
+    position: fixed;
+    top: -100em;
   }
 }
 </style>

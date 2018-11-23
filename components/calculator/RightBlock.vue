@@ -19,7 +19,7 @@ export default {
   padding: 30px 50px 80px 50px;
   background-image: linear-gradient(-180deg, #515359 0%, #46484e 100%);
   color: #fff;
-  position: relative;
+  position: fixed;
   .right-bloсk__title {
     font-family: Futura-Bold;
     font-size: 144px;

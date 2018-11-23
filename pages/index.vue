@@ -3,7 +3,8 @@
     column
     justify-center
     align-center
-    class="main">
+    class="main"
+    @click="$store.state.drawer = false">
     <no-ssr>
       <nuxt-link
         v-if="$vuetify.breakpoint.smAndUp"

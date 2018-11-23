@@ -7,7 +7,7 @@
       <siema
         ref="siema"
         :options="options"
-        :class="{ stretched: $store.state.drawer, active: isOpen }"
+        :class="{ active: isOpen }"
         class="bearle__services">
         <v-container
           v-for="(row, i) in $store.state.services"
@@ -32,7 +32,7 @@
         </v-container>
       </siema>
       <div
-        :class="{ active: isOpen }"
+        :class="{ shcherbackov: $store.state.drawer, active: isOpen }"
         class="bearle__services__more"
         @click="more"><span><i class="material-icons">keyboard_arrow_down</i> more services</span></div>
       <div
@@ -65,14 +65,27 @@ export default {
       }
     }
   },
+  mounted: function() {
+    setTimeout(() => {
+      this.$refs.siema.destroy(true)
+    }, 1)
+  },
   methods: {
     more() {
       if (this.isOpen) {
-        this.$refs.siema.goTo(0)
+        this.isOpen = false
+        this.$refs.siema.goTo(0, () =>
+          setTimeout(() => {
+            this.$refs.siema.destroy(true)
+          }, 500)
+        )
       } else {
-        this.$refs.siema.next()
+        this.$refs.siema.init()
+        this.isOpen = true
+        setTimeout(() => {
+          this.$refs.siema.next()
+        }, 4)
       }
-      this.isOpen = !this.isOpen
     },
     prev() {
       this.$refs.siema.prev()
@@ -84,14 +97,17 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.bearle__services:not(.active) > div:not(:first-child) {
+  display: none;
+}
 .bearle__service {
   box-shadow: 1px 1px 10px rgba(77, 77, 77, 0.1);
   padding: 20px 20px 80px 20px;
   color: #2a2c31;
   letter-spacing: 3.75px;
   height: 100%;
-  min-height: 340px;
+  //min-height: 340px;
   max-width: 340px;
   position: relative;
   transition: all 0.5s;
@@ -104,6 +120,7 @@ export default {
   p {
     font-family: Futura-Medium;
     font-size: 18px;
+    margin-bottom: 40px;
   }
   .bearle__service__price {
     font-family: FuturaBookC;
@@ -113,7 +130,7 @@ export default {
   }
 }
 .bearle__services__more {
-  position: absolute;
+  position: fixed;
   right: 35px;
   top: 115px;
   cursor: pointer;
@@ -140,10 +157,9 @@ export default {
 }
 .bearle__services__nav {
   position: absolute;
-  top: 800px;
-  right: 30%;
+  bottom: 0;
+  right: 25%;
   opacity: 0;
-  transition: all 0.7s;
   .material-icons {
     font-size: 48px;
     cursor: pointer;
@@ -158,8 +174,13 @@ export default {
   }
   .bearle__services {
     max-width: 756px;
-    &.stretched {
-      width: 756px;
+    height: 100%;
+    & > div,
+    .container {
+      height: 100%;
+      & > div {
+        height: 93%;
+      }
     }
     &.active {
       max-width: 100%;
@@ -167,7 +188,7 @@ export default {
   }
   .bearle__service {
     padding: 40px 50px;
-    width: 340px;
+    //width: 340px;
   }
   .bearle__service__title {
     margin-bottom: 30px;
@@ -175,6 +196,7 @@ export default {
     letter-spacing: 10px;
   }
   .bearle__services__more {
+    position: absolute;
     letter-spacing: 3.75px;
     font-size: 36px;
     top: 46px;
@@ -186,7 +208,7 @@ export default {
       left: -33px;
     }
     &.active {
-      right: 100%;
+      right: calc(100% + 25px);
       width: 240px;
     }
   }
@@ -195,21 +217,38 @@ export default {
   .container.fluid.relative {
     &.showed {
       max-width: 1100px;
-      padding-left: 310px;
+      margin-left: 150px;
     }
     &.opened {
       max-width: 100%;
+      .container {
+        padding-left: 0;
+        padding-right: 0;
+        .layout:only-child {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+    }
+    .bearle__services__more {
+      &.shcherbackov {
+        right: -40px;
+      }
+      &.active {
+        &.shcherbackov {
+          right: calc(100% - 320px);
+        }
+      }
     }
   }
 }
 @media only screen and (min-width: 601px) and (max-width: 960px) {
   .bearle__service {
     padding: 40px 50px;
-    width: 340px;
+    //width: 340px;
   }
   .bearle__services__more {
     top: 46px;
-    right: 33%;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -231,7 +270,7 @@ export default {
     }
   }
   .bearle__services__nav {
-    top: auto;
+    bottom: auto;
     right: 40%;
   }
 }

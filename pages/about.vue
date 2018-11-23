@@ -117,7 +117,7 @@
       }
       &:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        border-radius: 20px;
+        //border-radius: 20px;
         p {
           visibility: visible;
         }

@@ -45,9 +45,9 @@ const serviceList = [
     priceFrom: 800
   },
   {
-    title: 'Mobile App',
+    title: 'Replace wool',
     desc: 'Lorem ipsum dolor sit amet, consectetur',
-    priceFrom: 800
+    priceFrom: 100
   },
   {
     title: 'HL System',
@@ -55,7 +55,7 @@ const serviceList = [
     priceFrom: 17000
   },
   {
-    title: 'Automation',
+    title: 'Mobile App',
     desc: 'Lorem ipsum dolor sit amet, consectetur',
     priceFrom: 800
   },
@@ -65,9 +65,9 @@ const serviceList = [
     priceFrom: 17000
   },
   {
-    title: 'Replace wool',
+    title: 'Automation',
     desc: 'Lorem ipsum dolor sit amet, consectetur',
-    priceFrom: 100
+    priceFrom: 800
   },
   {
     title: 'Site',

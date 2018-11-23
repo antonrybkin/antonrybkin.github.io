@@ -47,6 +47,7 @@
               name="input-7-4"
               label="Your question"
               placeholder="write your question here"
+              no-resize
               counter="300"/>
           </v-flex>
           <v-flex xs12>
