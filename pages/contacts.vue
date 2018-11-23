@@ -1,11 +1,11 @@
 <template>
   <div class="bearle__contacts">
-    <div
-      class="bearle__contacts__close"
-      @click="back">Contacts</div>
-    <div
-      class="bearle__contacts__close--mobile"
-      @click="back">Close</div>
+    <router-link
+      to="/"
+      class="bearle__contacts__close">Contacts</router-link>
+    <router-link
+      to="/"
+      class="bearle__contacts__close--mobile">Close</router-link>
     <address
       :class="{ active: mobileFeedBack }">
       <h2>Address</h2>
@@ -14,18 +14,20 @@
       <p>+7 (916)108-79-57<br> Begel Valeriy</p>
       <h2>E-mail</h2>
       <p>Begel.V@bearle.ru</p>
-      <div
+      <v-btn
+        color="secondary"
         class="bearle__contacts__feedback-link"
-        @click="mobileFeedBack = true">Feeedback <i class="material-icons">keyboard_arrow_right</i></div>
+        @click="mobileFeedBack = true">contact us <i class="material-icons">keyboard_arrow_right</i></v-btn>
     </address>
     <v-container
       :class="{ active: mobileFeedBack }"
       grid-list-lg
       class="bearle__contacts__feedback">
       <form action="/contacts">
-        <div
+        <v-btn
+          color="secondary"
           class="bearle__contacts__adress-link"
-          @click="mobileFeedBack = false"><i class="material-icons">keyboard_arrow_left</i> Contacts</div>
+          @click="mobileFeedBack = false"><i class="material-icons">keyboard_arrow_left</i>see contacts</v-btn>
         <h2>Feedback</h2>
         <v-layout wrap>
           <v-flex
@@ -67,12 +69,12 @@ export default {
     return {
       mobileFeedBack: false
     }
-  },
-  methods: {
-    back() {
-      window.history.back()
-    }
   }
+  // methods: {
+  //   back() {
+  //     window.history.back()
+  //   }
+  // }
 }
 </script>
 
@@ -90,6 +92,7 @@ export default {
     color: #fff;
     letter-spacing: 5px;
     cursor: pointer;
+    text-decoration: none;
     &:before,
     &:after {
       content: '';
@@ -109,7 +112,7 @@ export default {
     }
   }
   address {
-    padding: 135px 40px 40px 40px;
+    padding: 135px 25px 1px 25px;
     text-align: right;
     font-family: Futura-Medium;
     font-style: normal;
@@ -130,13 +133,14 @@ export default {
   .bearle__contacts__close--mobile {
     position: absolute;
     top: 39px;
-    right: 27px;
+    right: 25px;
     z-index: 20;
     padding-right: 19px;
     font-family: Futura-Bold;
     font-size: 14px;
     color: #000;
     letter-spacing: 2.92px;
+    text-decoration: none;
     &:before,
     &:after {
       content: '';
@@ -156,18 +160,6 @@ export default {
     }
   }
 }
-.bearle__contacts__feedback-link {
-  padding-top: 60px;
-  .material-icons {
-    vertical-align: sub;
-  }
-}
-.bearle__contacts__adress-link {
-  padding-bottom: 60px;
-  .material-icons {
-    vertical-align: sub;
-  }
-}
 .bearle__contacts__feedback {
   position: absolute;
   right: -100%;
@@ -176,13 +168,13 @@ export default {
   height: 100%;
   letter-spacing: 0;
   transition: all 0.5s;
-  padding: 135px 40px 40px 40px;
+  padding: 135px 25px 15px 25px;
   &.active {
     right: 0;
   }
   textarea {
     border: 1px solid #595b61;
-    height: 304px;
+    height: 100px;
   }
   textarea,
   input {
@@ -211,12 +203,27 @@ export default {
     color: #000000;
   }
 }
+.bearle__contacts__feedback-link {
+  margin-top: 79px;
+  margin-right: 0;
+  .material-icons {
+    vertical-align: sub;
+  }
+}
+button.bearle__contacts__adress-link {
+  float: none;
+  margin-bottom: 60px;
+  margin-left: -3px;
+  .material-icons {
+    vertical-align: sub;
+  }
+}
 @media only screen and (min-width: 601px) {
   .bearle__contacts {
     background: url('/images/map.jpg');
     background-size: cover;
     height: 100%;
-    padding: 202px 70px 82px 70px;
+    padding: 202px 70px 60px 70px;
     /*background-image: linear-gradient(
       -90deg,
       rgba(49, 51, 58, 0.3) 0%,
@@ -228,6 +235,7 @@ export default {
       max-width: 454px;
       height: 100%;
       background: #fff;
+      padding: 135px 40px 40px 40px;
     }
   }
   .bearle__contacts__feedback {
@@ -235,7 +243,10 @@ export default {
     background: #fff;
     width: 55%;
     max-width: 685px;
-    padding: 30px;
+    padding: 30px 30px 15px 30px;
+    textarea {
+      height: 304px;
+    }
   }
   .bearle__contacts__feedback-link,
   .bearle__contacts__adress-link,

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import services from './services'
+import project from './project'
 
 Vue.use(Vuex)
 
@@ -21,7 +22,8 @@ const store = () =>
         { name: 'Company', link: '/about', order: 50 },
         { name: 'Contacts', link: '/contacts', order: 60 }
       ],
-      services
+      services,
+      project
     },
     mutations: {
       menuToggle(state) {

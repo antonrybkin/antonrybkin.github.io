@@ -35,16 +35,6 @@
         :class="{ shcherbackov: $store.state.drawer, active: isOpen }"
         class="bearle__services__more"
         @click="more"><span><i class="material-icons">keyboard_arrow_down</i> more services</span></div>
-      <div
-        :class="{ active: isOpen }"
-        class="bearle__services__nav">
-        <i
-          class="material-icons bearle__services__nav__prev"
-          @click="prev">keyboard_arrow_left</i>
-        <i
-          class="material-icons bearle__services__nav__next"
-          @click="next">keyboard_arrow_right</i>
-      </div>
     </no-ssr>
   </v-container>
 </template>
@@ -60,31 +50,19 @@ export default {
     return {
       isOpen: false,
       options: {
-        draggable: true,
+        draggable: false,
         duration: 500
       }
     }
-  },
-  mounted: function() {
-    setTimeout(() => {
-      this.$refs.siema.destroy(true)
-    }, 1)
   },
   methods: {
     more() {
       if (this.isOpen) {
         this.isOpen = false
-        this.$refs.siema.goTo(0, () =>
-          setTimeout(() => {
-            this.$refs.siema.destroy(true)
-          }, 500)
-        )
+        this.$refs.siema.goTo(0)
       } else {
-        this.$refs.siema.init()
         this.isOpen = true
-        setTimeout(() => {
-          this.$refs.siema.next()
-        }, 4)
+        this.$refs.siema.next()
       }
     },
     prev() {
@@ -98,7 +76,7 @@ export default {
 </script>
 
 <style lang="scss">
-.bearle__services:not(.active) > div:not(:first-child) {
+.bearle__services:not(.active) > div > div:not(:first-child) {
   display: none;
 }
 .bearle__service {
@@ -169,17 +147,14 @@ export default {
   }
 }
 @media only screen and (min-width: 961px) {
-  .container.fluid.relative {
-    max-width: 820px;
-  }
   .bearle__services {
     max-width: 756px;
     height: 100%;
     & > div,
     .container {
       height: 100%;
-      & > div {
-        height: 93%;
+      & > div:first-child {
+        height: 100%;
       }
     }
     &.active {
@@ -200,7 +175,7 @@ export default {
     letter-spacing: 3.75px;
     font-size: 36px;
     top: 46px;
-    right: 40px;
+    right: 240px;
     transition: all 0.5s;
     transition-timing-function: ease;
     span .material-icons {
@@ -232,7 +207,7 @@ export default {
     }
     .bearle__services__more {
       &.shcherbackov {
-        right: -40px;
+        right: 0;
       }
       &.active {
         &.shcherbackov {
