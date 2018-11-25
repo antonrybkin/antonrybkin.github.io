@@ -28,7 +28,7 @@
           color="secondary"
           class="bearle__contacts__adress-link"
           @click="mobileFeedBack = false"><i class="material-icons">keyboard_arrow_left</i>see contacts</v-btn>
-        <h2>Feedback</h2>
+        <h2>Contact us</h2>
         <v-layout wrap>
           <v-flex
             xs12
@@ -245,7 +245,7 @@ button.bearle__contacts__adress-link {
     max-width: 685px;
     padding: 30px 30px 15px 30px;
     textarea {
-      height: 304px;
+      height: 254px;
     }
   }
   .bearle__contacts__feedback-link,
