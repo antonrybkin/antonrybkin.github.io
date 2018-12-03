@@ -8,10 +8,6 @@ workbox.precaching.precacheAndRoute([
     "revision": "d1f3ca6833125012302559144b1a5b02"
   },
   {
-    "url": "/bearle-nuxt/_nuxt/09d6cd46dc935e48c844.js",
-    "revision": "c074005423c89976e34c0feedd886530"
-  },
-  {
     "url": "/bearle-nuxt/_nuxt/1a7f2528e1ffa0a00f3a.js",
     "revision": "af5328f995870b098cfe3f3e8e756d68"
   },
@@ -20,20 +16,24 @@ workbox.precaching.precacheAndRoute([
     "revision": "2ff7ba05f25ef1d8eeb63fde6f570ef1"
   },
   {
+    "url": "/bearle-nuxt/_nuxt/3e84e45118352d28cbb8.js",
+    "revision": "51befab42c2b7f705ee507dad8e8e0e9"
+  },
+  {
     "url": "/bearle-nuxt/_nuxt/3f49b9a4791f6181dbcf.js",
     "revision": "66edf39247b327768243689a825cf9f1"
   },
   {
-    "url": "/bearle-nuxt/_nuxt/48077928277d2c86433c.js",
-    "revision": "f9963ca63e762e84197b94069a78bb72"
+    "url": "/bearle-nuxt/_nuxt/45deb1ef274216076f6d.js",
+    "revision": "bf3891954d9f02db87d9e42c9c5856b9"
   },
   {
     "url": "/bearle-nuxt/_nuxt/4c445783907c3d32d1f7.js",
     "revision": "c7e106f3d9e9ff7ef1e219ea8e6955c4"
   },
   {
-    "url": "/bearle-nuxt/_nuxt/5a4dbd14c49740e761bc.js",
-    "revision": "3511cf74487177515846acbe1e515cc6"
+    "url": "/bearle-nuxt/_nuxt/5d6438b73bf5f4503d29.js",
+    "revision": "a816ac7b3dbf7c766a3e781700f482c5"
   },
   {
     "url": "/bearle-nuxt/_nuxt/65598895d4e85a12a77a.js",
@@ -48,12 +48,12 @@ workbox.precaching.precacheAndRoute([
     "revision": "9dc80f837104d2db01b3f3fc7a0fc8b1"
   },
   {
-    "url": "/bearle-nuxt/_nuxt/eed7033286f74c8a498e.js",
-    "revision": "5942e8192918e60c3b4f903989862614"
+    "url": "/bearle-nuxt/_nuxt/c2338787761796a0e0df.js",
+    "revision": "1273b033e204a44a39352c95c26fdaf3"
   },
   {
-    "url": "/bearle-nuxt/_nuxt/fe524db060a84d2b9a85.js",
-    "revision": "18410620900e04f1ad1a8f5ab2eaeba4"
+    "url": "/bearle-nuxt/_nuxt/eed7033286f74c8a498e.js",
+    "revision": "5942e8192918e60c3b4f903989862614"
   }
 ], {
   "cacheId": "Bearle",

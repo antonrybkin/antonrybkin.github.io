@@ -7,7 +7,7 @@
         <template v-for="(project, i) in $store.state.project.slice(from, toTheEnd)">
           <nuxt-link
             :key="i"
-            to="/project/_id"
+            to="/project/id_"
             class="bearle__project__item">
             <div class="bearle__project__item__sub-title">{{ project.subTitle }}</div>
             <img
