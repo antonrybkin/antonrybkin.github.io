@@ -35,15 +35,18 @@
   font-weight: normal;
 }
 
+body {
+  color: #2A2C31;
+}
+
 h1 {
   font-family: Futura-Bold;
   font-size: 64px;
-  color: #2A2C31;
+  margin-bottom: 31px;
 }
 h2 {
   font-family: Futura-Bold;
   font-size: 24px;
-  color: #2A2C31;
   margin-bottom: 16px;
   @media only screen and (min-width: 601px) {
     font-size: 36px;
@@ -52,14 +55,12 @@ h2 {
 p {
   font-family: Futura-Medium;
   font-size: 16px;
-  color: #2A2C31;
 }
 
 .application--wrap {
   font-family: Futura-Medium;
   font-size: 24px;
   line-height: normal;
-  color: #000;
   letter-spacing: 0;
   background: white;
   overflow-x: hidden;
@@ -75,7 +76,11 @@ p {
     @media only screen and (max-width: 600px) {
       padding: 100px 20px 10px 6px;
     }
-    @media only screen and (min-width: 601px) {
+    @media only screen and (min-width: 601px) and (max-width: 959px) {
+      margin: 125px 0 0 50px;
+      position: relative;
+    }
+    @media only screen and (min-width: 960px) {
       margin: 15px 0 0 180px;
       position: relative;
     }

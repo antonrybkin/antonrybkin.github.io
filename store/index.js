@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import services from './services'
+import ourProducts from './ourProducts'
 import project from './project'
 
 Vue.use(Vuex)
@@ -13,7 +14,7 @@ const store = () =>
         { name: 'Home page', link: '/', order: 10 },
         {
           name: 'Project',
-          link: '/',
+          link: '/project',
           order: 20,
           icon: '/images/calculator-white.svg'
         },
@@ -22,7 +23,10 @@ const store = () =>
         { name: 'Company', link: '/about', order: 50 },
         { name: 'Contacts', link: '/contacts', order: 60 }
       ],
+      showProducts: false,
+      showProductsAndProject: false,
       services,
+      ourProducts,
       project
     },
     mutations: {
