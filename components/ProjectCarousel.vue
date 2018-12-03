@@ -80,10 +80,15 @@ export default {
       this.$refs.siema.next()
     },
     ourProductsToggle() {
-      this.$vuetify.breakpoint.smAndDown
-        ? (this.$store.state.showProductsAndProject = !this.$store.state
-            .showProductsAndProject)
-        : (this.$store.state.showProducts = true)
+      if (this.$vuetify.breakpoint.smAndDown) {
+        this.$store.state.showProductsAndProject = !this.$store.state
+          .showProductsAndProject
+        setTimeout(() => {
+          this.$vuetify.goTo('.bearle__our-products')
+        }, 1)
+      } else {
+        this.$store.state.showProducts = true
+      }
     }
   }
 }
