@@ -9,13 +9,12 @@
           <li
             v-for="(item,i) in items"
             :key="i">
-            <a
-              href="#"
+            <div
               @click="$vuetify.goTo('#el'+i, { offset: -150 })">
               <img
                 :src="item.src"
                 alt="">
-            </a>
+            </div>
           </li>
         </ul>
       </div>
@@ -266,12 +265,13 @@ export default {
           border: 10px solid #575757;
           background: #313131;
           list-style: none;
-          a {
+          div {
             display: table-cell;
             height: 65px;
             width: 65px;
             vertical-align: middle;
             text-align: center;
+            cursor: pointer;
             img {
               width: 100%;
               max-width: 51px;
