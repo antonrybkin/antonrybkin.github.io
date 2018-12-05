@@ -198,6 +198,21 @@ export default {
     display: none;
   }
 }
+@media only screen and (min-width: 768px) {
+  .bearle__project--is-open {
+    .bearle__project__close {
+      top: 75px;
+      right: 80px;
+    }
+    aside {
+      padding: 145px 80px 0 80px;
+      &:after,
+      &:before {
+        display: none;
+      }
+    }
+  }
+}
 @media only screen and (min-width: 960px) {
   .bearle__project--is-open {
     .bearle__project__close {
@@ -220,10 +235,6 @@ export default {
       max-width: 606px;
       background-image: linear-gradient(-180deg, #515359 0%, #46484e 100%);
       z-index: 50;
-      &:after,
-      &:before {
-        display: none;
-      }
       .bearle__project__title {
         font-family: FuturaBookC;
         font-size: 48px;

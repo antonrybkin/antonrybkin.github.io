@@ -58,7 +58,6 @@ export default {
       toTheEnd: this.to > 0 ? this.to + 1 : this.$store.state.project.length,
       options: {
         draggable: true,
-        perPage: 3,
         duration: 500
       }
     }
@@ -66,10 +65,22 @@ export default {
   mounted: function() {
     setTimeout(() => {
       this.$refs.siema.destroy(true)
-      if (this.$vuetify.breakpoint.smAndDown) {
-        this.$refs.siema.options.perPage = 1
+      let slidesPerPage = 3
+      if (this.$vuetify.breakpoint.xs) {
+        slidesPerPage = 1
+      } else if (this.$vuetify.breakpoint.sm || this.$vuetify.breakpoint.md) {
+        slidesPerPage = 2
       }
+      let siemaWidth = this.$vuetify.breakpoint.smAndDown ? '100%' : '85%'
+      this.$refs.siema.options.perPage = slidesPerPage
       this.$refs.siema.init()
+      setTimeout(() => {
+        document
+          .querySelectorAll('.bearle__project')
+          .forEach(function(element) {
+            element.style.width = siemaWidth
+          })
+      }, 1)
     }, 1)
   },
   methods: {
@@ -96,19 +107,20 @@ export default {
 
 <style lang="scss">
 .bearle__project {
-  width: 100%;
+  width: 90%;
 }
 .bearle__project > div {
   max-height: 450px;
-  & > div > div {
-    width: 305px !important;
-  }
 }
 .bearle__project__item {
   margin-right: 30px;
   margin-bottom: 129px;
   display: inline-block;
   text-decoration: none;
+  max-width: 300px;
+  &:hover {
+    text-decoration: underline;
+  }
   .bearle__project__item__sub-title {
     opacity: 0.5;
     font-family: Futura-Medium;
@@ -149,13 +161,15 @@ export default {
   }
 }
 @media only screen and (min-width: 960px) {
-  .bearle__project > div {
-    margin-top: 0;
-    max-height: 675px;
-    & > div > div {
-      width: 350px !important;
-      &:nth-child(2n) {
-        margin-top: 136px;
+  .bearle__project {
+    width: 85%;
+    & > div {
+      margin-top: 0;
+      max-height: 600px;
+      & > div > div {
+        &:nth-child(2n) {
+          margin-top: 136px;
+        }
       }
     }
   }
@@ -174,7 +188,7 @@ export default {
   .bearle__project__nav {
     display: block;
     float: right;
-    margin-right: 200px;
+    margin-right: 50px;
     margin-top: -10px !important;
     z-index: 20;
     .material-icons {
@@ -183,17 +197,20 @@ export default {
       color: #26282d;
     }
   }
+  .showed_pro .bearle__project__nav {
+    margin-right: 310px;
+  }
   .bearle__project__link {
     font-size: 24px;
     letter-spacing: 5px;
     z-index: 10;
     display: inline-block;
+    &:hover {
+      text-decoration: underline;
+    }
     .material-icons {
       display: none;
     }
-  }
-  .showed_pro .bearle__project__nav {
-    margin-right: 480px;
   }
 }
 </style>

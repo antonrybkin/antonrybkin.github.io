@@ -15,7 +15,7 @@ const project = [
     subTitle: 'HL System'
   },
   {
-    title: 'Block Adoption Fund',
+    title: 'CryptoGrip',
     img: '/images/upload/project/2.jpg',
     subTitle: 'Crypto fund'
   },
@@ -25,7 +25,7 @@ const project = [
     subTitle: 'HL System'
   },
   {
-    title: 'Block Adoption Fund',
+    title: 'CryptoGrip',
     img: '/images/upload/project/1.jpg',
     subTitle: 'Crypto fund'
   },
@@ -33,6 +33,16 @@ const project = [
     title: 'SM&Co.',
     img: '/images/upload/project/3.jpg',
     subTitle: 'HL System'
+  },
+  {
+    title: 'CryptoGrip',
+    img: '/images/upload/project/2.jpg',
+    subTitle: 'Crypto fund'
+  },
+  {
+    title: 'SM&Co.',
+    img: '/images/upload/project/1.jpg',
+    subTitle: 'Crypto fund'
   }
 ]
 

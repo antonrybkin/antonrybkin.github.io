@@ -56,7 +56,6 @@ export default {
     return {
       options: {
         draggable: true,
-        perPage: 2,
         duration: 500
       }
     }
@@ -64,10 +63,19 @@ export default {
   mounted: function() {
     setTimeout(() => {
       this.$refs.ourProducts.destroy(true)
-      if (this.$vuetify.breakpoint.smAndDown) {
-        this.$refs.ourProducts.options.perPage = 1
+      let slidesPerPage = 2.5
+      if (this.$vuetify.breakpoint.xs) {
+        slidesPerPage = 1
+      } else if (this.$vuetify.breakpoint.sm || this.$vuetify.breakpoint.md) {
+        slidesPerPage = 2
       }
+      this.$refs.ourProducts.options.perPage = slidesPerPage
       this.$refs.ourProducts.init()
+      if (this.$vuetify.breakpoint.smAndDown) {
+        setTimeout(() => {
+          document.querySelector('.bearle__our-products').style.width = '100%'
+        }, 1)
+      }
     }, 1)
   },
   methods: {
@@ -85,12 +93,12 @@ export default {
 .bearle__our-products {
   margin-top: 30px;
   margin-left: 15px;
-  width: 100%;
+  width: 85%;
 }
 .bearle__our-products > div {
   max-height: 390px;
   & > div > div {
-    width: 305px !important;
+    min-width: 305px !important;
   }
 }
 .bearle__our-products__item {
@@ -114,7 +122,7 @@ export default {
   }
   .bearle__our-products__item__img {
     width: 275px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
   }
 }
 .bearle__our-products__nav,
@@ -125,10 +133,9 @@ export default {
   .bearle__our-products {
     margin-top: 100px;
     > div {
-      max-height: 634px;
+      max-height: 600px;
       margin-top: 0;
       & > div > div {
-        width: 412px !important;
         margin-top: 40px;
         &:nth-child(2n) {
           margin-top: 0;
@@ -146,18 +153,22 @@ export default {
     }
     .bearle__our-products__item__img {
       width: 382px;
+      margin-bottom: 25px;
     }
   }
   .bearle__our-products__nav {
     display: block;
     float: right;
-    margin-right: 200px;
+    margin-right: 50px;
     margin-top: -10px !important;
     .material-icons {
       font-size: 48px;
       cursor: pointer;
       color: #26282d;
     }
+  }
+  .showed_pro .bearle__our-products__nav {
+    margin-right: 310px;
   }
   .bearle__our-products__link {
     display: inline-block;
@@ -166,9 +177,9 @@ export default {
     color: #2a2c31;
     letter-spacing: 5px;
     cursor: pointer;
-  }
-  .showed_pro .bearle__our-products__nav {
-    margin-right: 480px;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>
