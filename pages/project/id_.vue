@@ -66,6 +66,7 @@ export default {
     }
   },
   mounted: function() {
+    // Horizontal slider only on mobile devices
     setTimeout(() => {
       this.$refs.siema.destroy(true)
       if (this.$vuetify.breakpoint.smAndDown) {
@@ -75,6 +76,7 @@ export default {
   },
   methods: {
     back() {
+      // Close the product
       window.history.back()
     }
   }
@@ -216,14 +218,19 @@ export default {
 @media only screen and (min-width: 960px) {
   .bearle__project--is-open {
     .bearle__project__close {
-      top: 60px;
-      right: 60px;
-      padding-right: 47px;
+      position: fixed;
+      padding: 15px 67px 12px 20px;
+      background: #1f1f1f;
+      top: 45px;
+      right: 40px;
+      border-radius: 25px;
       font-family: FuturaBookC;
       font-size: 24px;
       letter-spacing: 5px;
       &:before,
       &:after {
+        right: 20px;
+        top: 25px;
         height: 4px;
         width: 36px;
       }
@@ -266,8 +273,9 @@ export default {
       position: relative;
       width: 100%;
       ul {
-        position: absolute;
-        right: -160px;
+        position: fixed;
+        left: 481px;
+        padding: 0;
         top: 208px;
         li {
           margin-bottom: 15px;

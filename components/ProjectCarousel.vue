@@ -3,11 +3,12 @@
     <no-ssr>
       <siema
         ref="siema"
-        :options="options">
+        :options="options"
+        @init="preventLinkClick">
         <template v-for="(project, i) in $store.state.project.slice(from, toTheEnd)">
-          <nuxt-link
+          <a
             :key="i"
-            to="/project/id_"
+            href="/project/id_"
             class="bearle__project__item">
             <div class="bearle__project__item__sub-title">{{ project.subTitle }}</div>
             <img
@@ -16,7 +17,7 @@
               :alt="project.title"
               class="bearle__project__item__img">
             <div class="bearle__project__item__title">{{ project.title }}</div>
-          </nuxt-link>
+          </a>
         </template>
       </siema>
     </no-ssr>
@@ -63,6 +64,7 @@ export default {
     }
   },
   mounted: function() {
+    // For correct using multiple carousels
     setTimeout(() => {
       this.$refs.siema.destroy(true)
       let slidesPerPage = 3
@@ -71,26 +73,21 @@ export default {
       } else if (this.$vuetify.breakpoint.sm || this.$vuetify.breakpoint.md) {
         slidesPerPage = 2
       }
-      let siemaWidth = this.$vuetify.breakpoint.smAndDown ? '100%' : '85%'
       this.$refs.siema.options.perPage = slidesPerPage
       this.$refs.siema.init()
-      setTimeout(() => {
-        document
-          .querySelectorAll('.bearle__project')
-          .forEach(function(element) {
-            element.style.width = siemaWidth
-          })
-      }, 1)
     }, 1)
   },
   methods: {
     prev() {
+      // previous slide
       this.$refs.siema.prev()
     },
     next() {
+      // next slide
       this.$refs.siema.next()
     },
     ourProductsToggle() {
+      // on mobile devices products should be showen on the same page with project
       if (this.$vuetify.breakpoint.smAndDown) {
         this.$store.state.showProductsAndProject = !this.$store.state
           .showProductsAndProject
@@ -100,6 +97,29 @@ export default {
       } else {
         this.$store.state.showProducts = true
       }
+    },
+    preventLinkClick() {
+      // Disable links when slides are moving
+      this.$el.querySelectorAll('.bearle__project__item').forEach(function(el) {
+        let firstMouseX = 0
+        el.addEventListener('mousedown', event => (firstMouseX = event.clientX))
+        el.addEventListener('click', event => {
+          let lastMouseX = event.clientX
+          let diffMouseX = firstMouseX - lastMouseX
+          if (diffMouseX > 1 || diffMouseX < -1) {
+            event.preventDefault()
+          }
+        })
+      })
+      // On mobile devices should be effect of showing a little bit of the next slide
+      let siemaWidth = this.$vuetify.breakpoint.smAndDown ? '100%' : '85%'
+      setTimeout(() => {
+        document
+          .querySelectorAll('.bearle__project')
+          .forEach(function(element) {
+            element.style.width = siemaWidth
+          })
+      }, 1)
     }
   }
 }
@@ -163,12 +183,13 @@ export default {
 @media only screen and (min-width: 960px) {
   .bearle__project {
     width: 85%;
+    user-select: none;
     & > div {
       margin-top: 0;
-      max-height: 600px;
+      max-height: 580px;
       & > div > div {
         &:nth-child(2n) {
-          margin-top: 136px;
+          margin-top: 68px;
         }
       }
     }

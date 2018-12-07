@@ -71,7 +71,7 @@ export default {
 }
 .v-tabs__container {
   margin-left: 80px;
-  margin-bottom: 73px;
+  margin-bottom: 51px;
 }
 .v-tabs__item {
   margin-right: 15px;

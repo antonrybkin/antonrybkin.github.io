@@ -7,12 +7,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'GreyBlock'
-}
-</script>
-
 <style lang="scss" scoped>
 .right-block {
   min-height: 100%;

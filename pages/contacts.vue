@@ -70,11 +70,6 @@ export default {
       mobileFeedBack: false
     }
   }
-  // methods: {
-  //   back() {
-  //     window.history.back()
-  //   }
-  // }
 }
 </script>
 

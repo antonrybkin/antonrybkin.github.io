@@ -61,6 +61,7 @@ export default {
     }
   },
   mounted: function() {
+    // To use the carousel on the same page with project carousel
     setTimeout(() => {
       this.$refs.ourProducts.destroy(true)
       let slidesPerPage = 2.5
@@ -72,6 +73,7 @@ export default {
       this.$refs.ourProducts.options.perPage = slidesPerPage
       this.$refs.ourProducts.init()
       if (this.$vuetify.breakpoint.smAndDown) {
+        // On mobile devices should be effect of showing a little bit of the next slide
         setTimeout(() => {
           document.querySelector('.bearle__our-products').style.width = '100%'
         }, 1)
@@ -80,9 +82,11 @@ export default {
   },
   methods: {
     prev() {
+      // previous slide
       this.$refs.ourProducts.prev()
     },
     next() {
+      // next slide
       this.$refs.ourProducts.next()
     }
   }
@@ -132,6 +136,7 @@ export default {
 @media only screen and (min-width: 960px) {
   .bearle__our-products {
     margin-top: 100px;
+    user-select: none;
     > div {
       max-height: 600px;
       margin-top: 0;
