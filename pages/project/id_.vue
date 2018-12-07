@@ -27,18 +27,16 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     </aside>
     <v-container class="bearle__project__gallery">
-      <no-ssr>
-        <siema
-          ref="siema"
-          :options="options">
-          <img
-            v-for="(item,i) in items"
-            :key="i"
-            :id="'el'+i"
-            :src="item.src"
-            alt="">
-        </siema>
-      </no-ssr>
+      <siema
+        ref="siema"
+        :options="options">
+        <img
+          v-for="(item,i) in items"
+          :key="i"
+          :id="'el'+i"
+          :src="item.src"
+          alt="">
+      </siema>
     </v-container>
   </div>
 </template>
