@@ -4,7 +4,8 @@
       <no-ssr>
         <siema
           ref="ourProducts"
-          :options="options">
+          :options="options"
+          @init="setWrapperStyles">
           <template v-for="(pruduct, i) in $store.state.ourProducts">
             <div
               :key="i"
@@ -88,6 +89,13 @@ export default {
     next() {
       // next slide
       this.$refs.ourProducts.next()
+    },
+    setWrapperStyles() {
+      if (this.$vuetify.breakpoint.mdAndUp) {
+        let el = this.$el.querySelector('.bearle__our-products > div').style
+        el.overflow = 'visible'
+        el.float = 'left'
+      }
     }
   }
 }
@@ -99,15 +107,14 @@ export default {
   margin-left: 15px;
   width: 85%;
 }
-.bearle__our-products > div {
-  max-height: 390px;
+.bearle__our-products > div:first-child {
+  min-height: 390px;
   & > div > div {
     min-width: 305px !important;
   }
 }
 .bearle__our-products__item {
   margin-right: 30px;
-  margin-bottom: 129px;
   display: inline-block;
   text-decoration: none;
   .bearle__our-products__item__sub-title {
@@ -137,8 +144,8 @@ export default {
   .bearle__our-products {
     margin-top: 100px;
     user-select: none;
-    > div {
-      max-height: 600px;
+    > div:first-child {
+      min-height: 570px;
       margin-top: 0;
       & > div > div {
         margin-top: 40px;
@@ -150,7 +157,6 @@ export default {
   }
   .bearle__our-products__item {
     margin-right: 50px;
-    margin-bottom: 129px;
     .bearle__our-products__item__title {
       font-size: 36px;
       letter-spacing: 7.5px;

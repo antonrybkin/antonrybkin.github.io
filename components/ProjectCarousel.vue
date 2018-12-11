@@ -3,7 +3,8 @@
     <no-ssr>
       <siema
         ref="siema"
-        :options="options">
+        :options="options"
+        @init="setWrapperStyles">
         <template v-for="(project, i) in $store.state.project.slice(from, toTheEnd)">
           <nuxt-link
             :key="i"
@@ -119,6 +120,13 @@ export default {
       let lastMouseX = event.clientX
       let diffMouseX = this.firstMouseX - lastMouseX
       if (diffMouseX === 0) this.$router.push(route)
+    },
+    setWrapperStyles() {
+      if (this.$vuetify.breakpoint.mdAndUp) {
+        let el = this.$el.querySelector('.bearle__project > div').style
+        el.overflow = 'visible'
+        el.float = 'left'
+      }
     }
   }
 }
@@ -127,13 +135,13 @@ export default {
 <style lang="scss">
 .bearle__project {
   width: 90%;
-}
-.bearle__project > div {
-  max-height: 450px;
+  & > div:first-child {
+    min-height: 450px;
+    z-index: 10;
+  }
 }
 .bearle__project__item {
   margin-right: 30px;
-  margin-bottom: 129px;
   display: inline-block;
   text-decoration: none;
   max-width: 300px;
@@ -183,9 +191,9 @@ export default {
   .bearle__project {
     width: 85%;
     user-select: none;
-    & > div {
+    & > div:first-child {
       margin-top: 0;
-      max-height: 580px;
+      min-height: 570px;
       & > div > div {
         &:nth-child(2n) {
           margin-top: 68px;
@@ -195,7 +203,6 @@ export default {
   }
   .bearle__project__item {
     margin-right: 50px;
-    margin-bottom: 129px;
     .bearle__project__item__title {
       font-size: 36px;
       letter-spacing: 7.5px;
