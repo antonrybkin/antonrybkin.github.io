@@ -3,13 +3,15 @@
     <no-ssr>
       <siema
         ref="siema"
-        :options="options"
-        @init="preventLinkClick">
+        :options="options">
         <template v-for="(project, i) in $store.state.project.slice(from, toTheEnd)">
-          <a
+          <nuxt-link
             :key="i"
-            href="/project/id_"
-            class="bearle__project__item">
+            to="/project/id_"
+            event=""
+            class="bearle__project__item"
+            @mousedown.native.prevent="preventLinkMouseDown"
+            @click.native.prevent="preventLinkClick('/project/id_')">
             <div class="bearle__project__item__sub-title">{{ project.subTitle }}</div>
             <img
               v-if="project.img"
@@ -17,7 +19,7 @@
               :alt="project.title"
               class="bearle__project__item__img">
             <div class="bearle__project__item__title">{{ project.title }}</div>
-          </a>
+          </nuxt-link>
         </template>
       </siema>
     </no-ssr>
@@ -57,6 +59,7 @@ export default {
   data() {
     return {
       toTheEnd: this.to > 0 ? this.to + 1 : this.$store.state.project.length,
+      firstMouseX: 0,
       options: {
         draggable: true,
         duration: 500
@@ -64,8 +67,8 @@ export default {
     }
   },
   mounted: function() {
-    // For correct using multiple carousels
     setTimeout(() => {
+      // For correct using multiple carousels
       this.$refs.siema.destroy(true)
       let slidesPerPage = 3
       if (this.$vuetify.breakpoint.xs) {
@@ -75,6 +78,15 @@ export default {
       }
       this.$refs.siema.options.perPage = slidesPerPage
       this.$refs.siema.init()
+      // On mobile devices should be effect of showing a little bit of the next slide
+      let siemaWidth = this.$vuetify.breakpoint.smAndDown ? '100%' : '85%'
+      setTimeout(() => {
+        document
+          .querySelectorAll('.bearle__project')
+          .forEach(function(element) {
+            element.style.width = siemaWidth
+          })
+      }, 1)
     }, 1)
   },
   methods: {
@@ -98,28 +110,15 @@ export default {
         this.$store.state.showProducts = true
       }
     },
-    preventLinkClick() {
+    preventLinkMouseDown() {
+      // Helper to the method preventLinkClick
+      this.firstMouseX = event.clientX
+    },
+    preventLinkClick(route) {
       // Disable links when slides are moving
-      this.$el.querySelectorAll('.bearle__project__item').forEach(function(el) {
-        let firstMouseX = 0
-        el.addEventListener('mousedown', event => (firstMouseX = event.clientX))
-        el.addEventListener('click', event => {
-          let lastMouseX = event.clientX
-          let diffMouseX = firstMouseX - lastMouseX
-          if (diffMouseX > 1 || diffMouseX < -1) {
-            event.preventDefault()
-          }
-        })
-      })
-      // On mobile devices should be effect of showing a little bit of the next slide
-      let siemaWidth = this.$vuetify.breakpoint.smAndDown ? '100%' : '85%'
-      setTimeout(() => {
-        document
-          .querySelectorAll('.bearle__project')
-          .forEach(function(element) {
-            element.style.width = siemaWidth
-          })
-      }, 1)
+      let lastMouseX = event.clientX
+      let diffMouseX = this.firstMouseX - lastMouseX
+      if (diffMouseX === 0) this.$router.push(route)
     }
   }
 }
