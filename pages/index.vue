@@ -17,13 +17,13 @@
       md6>
       <div class="text-xs-center main--logo">
         <img
-          src="images/logo.svg"
+          src="/images/logo.svg"
           alt="Bearle IT&ART">
       </div>
     </v-flex>
     <div class="bearle__footer__calculator">
       <nuxt-link to="/calc"><img
-        src="images/calculator-grey.svg"
+        src="/images/calculator-grey.svg"
         alt="Project's Calculator"></nuxt-link>
     </div>
   </v-layout>

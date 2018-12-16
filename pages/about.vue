@@ -3,7 +3,7 @@
     <div class="bearle__about">About</div>
     <div class="text-md-right bearle__logo">
       <img
-        src="images/Logo-black.png"
+        src="/images/Logo-black.png"
         alt="Bearle IT&ART">
     </div>
     <h1 class="bearle__h1">01 <span>h1title</span></h1>
