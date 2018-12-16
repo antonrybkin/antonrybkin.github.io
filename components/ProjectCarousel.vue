@@ -1,29 +1,26 @@
 <template>
   <div class="bearle__project">
-    <no-ssr>
-      <siema
-        ref="siema"
-        :options="options"
-        @init="setWrapperStyles">
-        <template v-for="(project, i) in $store.state.project.slice(from, toTheEnd)">
-          <nuxt-link
-            :key="i"
-            to="/project/id_"
-            event=""
-            class="bearle__project__item"
-            @mousedown.native.prevent="preventLinkMouseDown"
-            @click.native.prevent="preventLinkClick('/project/id_')">
-            <div class="bearle__project__item__sub-title">{{ project.subTitle }}</div>
-            <img
-              v-if="project.img"
-              :src="project.img"
-              :alt="project.title"
-              class="bearle__project__item__img">
-            <div class="bearle__project__item__title">{{ project.title }}</div>
-          </nuxt-link>
-        </template>
-      </siema>
-    </no-ssr>
+    <siema
+      ref="siema"
+      :options="options">
+      <template v-for="(project, i) in $store.state.project.slice(from, toTheEnd)">
+        <nuxt-link
+          :key="i"
+          to="/project/id_"
+          event=""
+          class="bearle__project__item"
+          @mousedown.native.prevent="preventLinkMouseDown($event)"
+          @click.native.prevent="preventLinkClick('/project/id_', $event)">
+          <div class="bearle__project__item__sub-title">{{ project.subTitle }}</div>
+          <img
+            v-if="project.img"
+            :src="project.img"
+            :alt="project.title"
+            class="bearle__project__item__img">
+          <div class="bearle__project__item__title">{{ project.title }}</div>
+        </nuxt-link>
+      </template>
+    </siema>
     <div
       class="bearle__project__nav">
       <i
@@ -34,7 +31,6 @@
         @click="next">keyboard_arrow_right</i>
     </div>
     <div
-      :class="{ active: $store.state.showProductsAndProject }"
       class="bearle__project__link"
       @click="ourProductsToggle">Our Products <i class="material-icons">keyboard_arrow_down</i></div>
   </div>
@@ -87,6 +83,7 @@ export default {
           .forEach(function(element) {
             element.style.width = siemaWidth
           })
+        this.setWrapperStyles()
       }, 1)
     }, 1)
   },
@@ -101,21 +98,17 @@ export default {
     },
     ourProductsToggle() {
       // on mobile devices products should be showen on the same page with project
-      if (this.$vuetify.breakpoint.smAndDown) {
-        this.$store.state.showProductsAndProject = !this.$store.state
-          .showProductsAndProject
-        setTimeout(() => {
-          this.$vuetify.goTo('.bearle__our-products')
-        }, 1)
+      if (this.$vuetify.breakpoint.mdAndDown) {
+        this.$vuetify.goTo('.bearle__our-products')
       } else {
         this.$store.state.showProducts = true
       }
     },
-    preventLinkMouseDown() {
+    preventLinkMouseDown(event) {
       // Helper to the method preventLinkClick
       this.firstMouseX = event.clientX
     },
-    preventLinkClick(route) {
+    preventLinkClick(route, event) {
       // Disable links when slides are moving
       let lastMouseX = event.clientX
       let diffMouseX = this.firstMouseX - lastMouseX
@@ -125,7 +118,6 @@ export default {
       if (this.$vuetify.breakpoint.mdAndUp) {
         let el = this.$el.querySelector('.bearle__project > div').style
         el.overflow = 'visible'
-        el.float = 'left'
       }
     }
   }
@@ -134,7 +126,7 @@ export default {
 
 <style lang="scss">
 .bearle__project {
-  width: 90%;
+  width: 315px;
   & > div:first-child {
     min-height: 450px;
     z-index: 10;
@@ -187,7 +179,12 @@ export default {
     transform: rotate(180deg);
   }
 }
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 601px) and (max-width: 960px) {
+  .bearle__project {
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 961px) {
   .bearle__project {
     width: 85%;
     user-select: none;

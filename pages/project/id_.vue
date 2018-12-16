@@ -50,7 +50,6 @@ Vue.use(Siema)
 export default {
   data() {
     return {
-      mobileFeedBack: false,
       items: [
         { src: '/images/upload/project/1_big.jpg' },
         { src: '/images/upload/project/2_big.jpg' },

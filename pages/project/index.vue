@@ -51,6 +51,9 @@ export default {
   },
   mounted: function() {
     this.$store.state.showProducts = false
+    if (this.$vuetify.breakpoint.mdAndDown) {
+      this.$store.state.showProductsAndProject = true
+    }
   }
 }
 </script>

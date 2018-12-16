@@ -72,7 +72,6 @@
   }
 }
 .bearle__h1 {
-  font-size: 24px;
   color: #2c2f36;
   text-align: center;
   margin-top: 30px;

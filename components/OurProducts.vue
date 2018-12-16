@@ -1,25 +1,22 @@
 <template>
   <v-scroll-y-transition>
     <div class="bearle__our-products">
-      <no-ssr>
-        <siema
-          ref="ourProducts"
-          :options="options"
-          @init="setWrapperStyles">
-          <template v-for="(pruduct, i) in $store.state.ourProducts">
-            <div
-              :key="i"
-              class="bearle__our-products__item">
-              <img
-                v-if="pruduct.img"
-                :src="pruduct.img"
-                :alt="pruduct.title"
-                class="bearle__our-products__item__img">
-              <div class="bearle__our-products__item__title">{{ pruduct.title }}</div>
-            </div>
-          </template>
-        </siema>
-      </no-ssr>
+      <siema
+        ref="ourProducts"
+        :options="options">
+        <template v-for="(pruduct, i) in $store.state.ourProducts">
+          <div
+            :key="i"
+            class="bearle__our-products__item">
+            <img
+              v-if="pruduct.img"
+              :src="pruduct.img"
+              :alt="pruduct.title"
+              class="bearle__our-products__item__img">
+            <div class="bearle__our-products__item__title">{{ pruduct.title }}</div>
+          </div>
+        </template>
+      </siema>
       <div
         class="bearle__our-products__nav">
         <i
@@ -43,16 +40,6 @@ import Siema from 'vue2-siema'
 Vue.use(Siema)
 
 export default {
-  props: {
-    from: {
-      type: Number,
-      default: 0
-    },
-    to: {
-      type: Number,
-      default: 0
-    }
-  },
   data() {
     return {
       options: {
@@ -66,19 +53,21 @@ export default {
     setTimeout(() => {
       this.$refs.ourProducts.destroy(true)
       let slidesPerPage = 2.5
-      if (this.$vuetify.breakpoint.xs) {
+      if (this.$vuetify.breakpoint.mdAndDown) {
         slidesPerPage = 1
-      } else if (this.$vuetify.breakpoint.sm || this.$vuetify.breakpoint.md) {
-        slidesPerPage = 2
       }
       this.$refs.ourProducts.options.perPage = slidesPerPage
       this.$refs.ourProducts.init()
-      if (this.$vuetify.breakpoint.smAndDown) {
-        // On mobile devices should be effect of showing a little bit of the next slide
-        setTimeout(() => {
+      setTimeout(() => {
+        if (this.$vuetify.breakpoint.smAndDown) {
+          // On mobile devices should be effect of showing a little bit of the next slide
           document.querySelector('.bearle__our-products').style.width = '100%'
-        }, 1)
-      }
+        }
+        if (this.$vuetify.breakpoint.mdAndUp) {
+          document.querySelector('.bearle__our-products > div').style.overflow =
+            'visible'
+        }
+      }, 1)
     }, 1)
   },
   methods: {
@@ -89,13 +78,6 @@ export default {
     next() {
       // next slide
       this.$refs.ourProducts.next()
-    },
-    setWrapperStyles() {
-      if (this.$vuetify.breakpoint.mdAndUp) {
-        let el = this.$el.querySelector('.bearle__our-products > div').style
-        el.overflow = 'visible'
-        el.float = 'left'
-      }
     }
   }
 }
@@ -105,7 +87,7 @@ export default {
 .bearle__our-products {
   margin-top: 30px;
   margin-left: 15px;
-  width: 85%;
+  width: 315px;
 }
 .bearle__our-products > div:first-child {
   min-height: 390px;
@@ -140,9 +122,10 @@ export default {
 .bearle__our-products__link {
   display: none;
 }
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 1264px) {
   .bearle__our-products {
     margin-top: 100px;
+    width: 85%;
     user-select: none;
     > div:first-child {
       min-height: 570px;
