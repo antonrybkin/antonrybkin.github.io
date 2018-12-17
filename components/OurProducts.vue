@@ -86,7 +86,7 @@ export default {
 <style lang="scss">
 .bearle__our-products {
   margin-top: 30px;
-  margin-left: 15px;
+  margin-left: 19px;
   width: 315px;
 }
 .bearle__our-products > div:first-child {
@@ -122,11 +122,20 @@ export default {
 .bearle__our-products__link {
   display: none;
 }
+@media only screen and (min-width: 400px) and (max-width: 600px) {
+  .bearle__our-products {
+    width: 345px;
+    .bearle__our-products__item .bearle__our-products__item__img {
+      width: 315px;
+    }
+  }
+}
 @media only screen and (min-width: 1264px) {
   .bearle__our-products {
     margin-top: 100px;
     width: 85%;
     user-select: none;
+    margin-left: 9px;
     > div:first-child {
       min-height: 570px;
       margin-top: 0;

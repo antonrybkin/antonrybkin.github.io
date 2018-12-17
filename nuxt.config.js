@@ -34,9 +34,9 @@ module.exports = {
     ]
   },
   // For GH Pages:
-  router: {
-    base: '/bearle-nuxt/'
-  },
+  // router: {
+  //   base: '/bearle-nuxt/'
+  // },
 
   /*
   ** Customize the progress-bar color

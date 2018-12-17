@@ -70,10 +70,10 @@ export default {
   contain: none;
 }
 .v-window__container {
-  margin-left: 15px;
+  margin-left: 19px;
 }
 .v-tabs__container {
-  margin-left: 80px;
+  margin-left: 95px;
   margin-bottom: 51px;
 }
 .v-tabs__item {
@@ -105,6 +105,9 @@ export default {
   }
   .v-tabs__container {
     margin-left: 0;
+  }
+  .v-window__container {
+    margin-left: 9px;
   }
   .v-tabs__item {
     margin-right: 25px;

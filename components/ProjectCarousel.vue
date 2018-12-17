@@ -136,7 +136,6 @@ export default {
   margin-right: 30px;
   display: inline-block;
   text-decoration: none;
-  max-width: 300px;
   &:hover {
     text-decoration: underline;
   }
@@ -177,6 +176,14 @@ export default {
   }
   &.active .material-icons {
     transform: rotate(180deg);
+  }
+}
+@media only screen and (min-width: 400px) and (max-width: 600px) {
+  .bearle__project {
+    width: 345px;
+    .bearle__project__item .bearle__project__item__img {
+      width: 315px;
+    }
   }
 }
 @media only screen and (min-width: 601px) and (max-width: 960px) {
