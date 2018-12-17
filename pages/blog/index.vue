@@ -148,10 +148,15 @@ export default {
 .bearle__blog__nav {
   display: none;
 }
+@media only screen and (min-width: 400px) and (max-width: 959px) {
+  .bearle__blog__item .bearle__blog__item__img {
+    height: 470px;
+  }
+}
 @media only screen and (min-width: 960px) {
   .bearle__blog {
     width: 96%;
-    margin-top: 168px;
+    margin-top: 140px;
     & > div:first-child {
       position: relative;
       z-index: 10;

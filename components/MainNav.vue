@@ -43,9 +43,7 @@ export default {
     //   this.$store.state.drawer = false
     // },
     closeMenu: function(e) {
-      if (this.$vuetify.breakpoint.mdAndDown) {
-        this.$store.state.drawer = false
-      }
+      this.$store.state.drawer = false
     }
   }
 }
