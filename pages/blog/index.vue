@@ -4,6 +4,10 @@
       ref="siema"
       :options="options">
       <div
+        v-touch="{
+          up: () => swipe('Up'),
+          down: () => swipe('Down')
+        }"
         v-for="(blog, i) in $store.state.blog"
         :key="i"
         class="bearle__blog__item">
@@ -94,6 +98,16 @@ export default {
       let lastMouseX = event.clientX
       let diffMouseX = this.firstMouseX - lastMouseX
       if (diffMouseX === 0) this.$router.push({ path: '/blog/' + id })
+    },
+    swipe(direction) {
+      if (direction == 'Up') {
+        this.$el
+          .querySelector('.bearle__blog__item:not(:first-child):not(.active)')
+          .classList.add('active')
+      } else {
+        let nodes = this.$el.querySelectorAll('.bearle__blog__item.active')
+        nodes[nodes.length - 1].classList.remove('active')
+      }
     }
   }
 }
@@ -148,6 +162,32 @@ export default {
 .bearle__blog__nav {
   display: none;
 }
+@media only screen and (max-width: 959px) {
+  .bearle__blog {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    > div {
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+  .bearle__blog__item {
+    background: #fff;
+    position: absolute;
+    opacity: 0.5;
+    top: 100%;
+    height: 0;
+    transition: all 0.6s;
+    &.active,
+    &:first-child {
+      opacity: 1;
+      top: 0;
+      height: 100%;
+      transition: all 0.2s;
+    }
+  }
+}
 @media only screen and (min-width: 400px) and (max-width: 959px) {
   .bearle__blog__item .bearle__blog__item__img {
     height: 470px;
@@ -178,7 +218,7 @@ export default {
   }
   .bearle__blog__item {
     position: relative;
-    height: 670px;
+    height: 531px;
     margin-right: 110px;
     text-align: right;
     p {
@@ -211,6 +251,14 @@ export default {
 @media only screen and (min-width: 1200px) {
   .bearle__blog__item .bearle__blog__item__img {
     width: auto;
+  }
+}
+@media only screen and (min-width: 1801px) {
+  .bearle__blog {
+    margin-top: 168px;
+    .bearle__blog__item {
+      height: 670px;
+    }
   }
 }
 </style>

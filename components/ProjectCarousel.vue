@@ -186,14 +186,13 @@ export default {
     }
   }
 }
-@media only screen and (min-width: 601px) and (max-width: 960px) {
+@media only screen and (min-width: 601px) {
   .bearle__project {
     width: 90%;
   }
 }
 @media only screen and (min-width: 961px) {
   .bearle__project {
-    width: 85%;
     user-select: none;
     & > div:first-child {
       margin-top: 0;

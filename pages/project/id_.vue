@@ -26,7 +26,7 @@
       <h3>h3 title</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     </aside>
-    <v-container class="bearle__project__gallery">
+    <div class="bearle__project__gallery">
       <siema
         ref="siema"
         :options="options">
@@ -37,7 +37,7 @@
           :src="item.src"
           alt="">
       </siema>
-    </v-container>
+    </div>
   </div>
 </template>
 
@@ -262,6 +262,7 @@ export default {
       padding: 167px 116px 0 116px;
       img {
         display: block;
+        width: 100%;
         margin-bottom: 51px;
       }
     }
