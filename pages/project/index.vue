@@ -67,6 +67,7 @@ export default {
 }
 .v-tabs__wrapper {
   overflow: visible;
+  overflow-y: auto;
   contain: none;
 }
 .v-window__container {
@@ -93,6 +94,14 @@ export default {
 }
 .v-tabs__slider.accent {
   display: none;
+}
+@media only screen and (max-width: 959px) {
+  .v-tabs__bar {
+    ::-webkit-scrollbar {
+      width: 0px; /* remove scrollbar space */
+      background: transparent; /* optional: just make scrollbar invisible */
+    }
+  }
 }
 @media only screen and (min-width: 960px) {
   .container.fluid.relative {

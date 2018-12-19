@@ -1,5 +1,6 @@
 <template>
-  <div class="bearle__project">
+  <div
+    class="bearle__project">
     <siema
       ref="siema"
       :options="options">
@@ -69,20 +70,14 @@ export default {
       this.$refs.siema.destroy(true)
       let slidesPerPage = 3
       if (this.$vuetify.breakpoint.xs) {
-        slidesPerPage = 1
+        slidesPerPage = 1.1
       } else if (this.$vuetify.breakpoint.sm || this.$vuetify.breakpoint.md) {
         slidesPerPage = 2
       }
       this.$refs.siema.options.perPage = slidesPerPage
       this.$refs.siema.init()
       // On mobile devices should be effect of showing a little bit of the next slide
-      let siemaWidth = this.$vuetify.breakpoint.smAndDown ? '100%' : '85%'
       setTimeout(() => {
-        document
-          .querySelectorAll('.bearle__project')
-          .forEach(function(element) {
-            element.style.width = siemaWidth
-          })
         this.setWrapperStyles()
       }, 1)
     }, 1)
@@ -126,7 +121,6 @@ export default {
 
 <style lang="scss">
 .bearle__project {
-  width: 315px;
   & > div:first-child {
     min-height: 450px;
     z-index: 10;
@@ -180,7 +174,6 @@ export default {
 }
 @media only screen and (min-width: 400px) and (max-width: 600px) {
   .bearle__project {
-    width: 345px;
     .bearle__project__item .bearle__project__item__img {
       width: 315px;
     }
@@ -218,7 +211,7 @@ export default {
   .bearle__project__nav {
     display: block;
     float: right;
-    margin-right: 50px;
+    margin-right: 100px;
     margin-top: -10px !important;
     z-index: 20;
     .material-icons {
@@ -228,7 +221,7 @@ export default {
     }
   }
   .showed_pro .bearle__project__nav {
-    margin-right: 310px;
+    margin-right: 360px;
   }
   .bearle__project__link {
     font-size: 24px;

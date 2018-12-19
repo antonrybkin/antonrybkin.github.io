@@ -87,7 +87,8 @@ export default {
     },
     nextNews(number) {
       // next slide (mobile)
-      this.$vuetify.goTo('.bearle__blog__item:nth-child(' + number + ')')
+      //this.$vuetify.goTo('.bearle__blog__item:nth-child(' + number + ')')
+      this.swipe('Up')
     },
     preventLinkMouseDown(event) {
       // Helper to the method preventLinkClick
@@ -188,9 +189,19 @@ export default {
     }
   }
 }
-@media only screen and (min-width: 400px) and (max-width: 959px) {
+@media only screen and (max-height: 600px) {
+  .bearle__blog__item .bearle__blog__item__img {
+    height: 270px;
+  }
+}
+@media only screen and (min-width: 400px) and (max-width: 600px) {
   .bearle__blog__item .bearle__blog__item__img {
     height: 470px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 959px) {
+  .bearle__blog__item .bearle__blog__item__img {
+    height: 670px;
   }
 }
 @media only screen and (min-width: 960px) {

@@ -53,16 +53,14 @@ export default {
     setTimeout(() => {
       this.$refs.ourProducts.destroy(true)
       let slidesPerPage = 2.5
-      if (this.$vuetify.breakpoint.mdAndDown) {
-        slidesPerPage = 1
+      if (this.$vuetify.breakpoint.xs) {
+        slidesPerPage = 1.1
+      } else if (this.$vuetify.breakpoint.sm || this.$vuetify.breakpoint.md) {
+        slidesPerPage = 2
       }
       this.$refs.ourProducts.options.perPage = slidesPerPage
       this.$refs.ourProducts.init()
       setTimeout(() => {
-        if (this.$vuetify.breakpoint.smAndDown) {
-          // On mobile devices should be effect of showing a little bit of the next slide
-          document.querySelector('.bearle__our-products').style.width = '100%'
-        }
         if (this.$vuetify.breakpoint.mdAndUp) {
           document.querySelector('.bearle__our-products > div').style.overflow =
             'visible'
@@ -87,7 +85,6 @@ export default {
 .bearle__our-products {
   margin-top: 30px;
   margin-left: 19px;
-  width: 315px;
 }
 .bearle__our-products > div:first-child {
   min-height: 390px;
@@ -124,10 +121,14 @@ export default {
 }
 @media only screen and (min-width: 400px) and (max-width: 600px) {
   .bearle__our-products {
-    width: 345px;
     .bearle__our-products__item .bearle__our-products__item__img {
       width: 315px;
     }
+  }
+}
+@media only screen and (min-width: 601px) {
+  .bearle__our-products {
+    width: 90%;
   }
 }
 @media only screen and (min-width: 1264px) {
