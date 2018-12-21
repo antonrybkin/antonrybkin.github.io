@@ -114,8 +114,11 @@ p {
   }
   ul {
     position: absolute;
-    bottom: 30px;
+    bottom: 80px;
     right: 0;
+    @media only screen and (min-width: 330px) {
+      bottom: 30px;
+    }
     li {
       list-style: none;
       padding: 20px 50px;

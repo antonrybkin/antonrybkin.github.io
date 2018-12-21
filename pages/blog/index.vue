@@ -189,7 +189,15 @@ export default {
     }
   }
 }
-@media only screen and (max-height: 600px) {
+@media only screen and (max-height: 560px) {
+  .bearle__blog__item .bearle__blog__item__img {
+    height: 180px;
+  }
+  .bearle__blog__item .bearle__blog__next {
+    margin-top: 15px;
+  }
+}
+@media only screen and (min-height: 561px) and (max-height: 600px) {
   .bearle__blog__item .bearle__blog__item__img {
     height: 270px;
   }

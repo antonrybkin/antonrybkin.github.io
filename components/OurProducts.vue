@@ -88,9 +88,6 @@ export default {
 }
 .bearle__our-products > div:first-child {
   min-height: 390px;
-  & > div > div {
-    min-width: 305px !important;
-  }
 }
 .bearle__our-products__item {
   margin-right: 30px;
@@ -118,6 +115,13 @@ export default {
 .bearle__our-products__nav,
 .bearle__our-products__link {
   display: none;
+}
+@media only screen and (max-width: 330px) {
+  .bearle__our-products {
+    .bearle__our-products__item .bearle__our-products__item__img {
+      width: 240px;
+    }
+  }
 }
 @media only screen and (min-width: 400px) and (max-width: 600px) {
   .bearle__our-products {

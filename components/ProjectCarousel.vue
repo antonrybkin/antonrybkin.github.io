@@ -172,6 +172,13 @@ export default {
     transform: rotate(180deg);
   }
 }
+@media only screen and (max-width: 330px) {
+  .bearle__project {
+    .bearle__project__item .bearle__project__item__img {
+      width: 240px;
+    }
+  }
+}
 @media only screen and (min-width: 400px) and (max-width: 600px) {
   .bearle__project {
     .bearle__project__item .bearle__project__item__img {
