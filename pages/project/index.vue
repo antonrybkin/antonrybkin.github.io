@@ -5,7 +5,6 @@
     fluid
     relative>
     <v-tabs
-      v-if="!$store.state.showProducts"
       v-model="active">
       <v-tab
         v-for="n in 3"
@@ -31,7 +30,7 @@
           :to="6"/>
       </v-tab-item>
     </v-tabs>
-    <our-products v-if="$store.state.showProducts || $store.state.showProductsAndProject"/>
+    <our-products v-if="$store.state.showProductsAndProject"/>
   </v-container>
 </template>
 
@@ -50,7 +49,6 @@ export default {
     }
   },
   mounted: function() {
-    this.$store.state.showProducts = false
     if (this.$vuetify.breakpoint.mdAndDown) {
       this.$store.state.showProductsAndProject = true
     }

@@ -32,8 +32,10 @@
         @click="next">keyboard_arrow_right</i>
     </div>
     <div
+      :class="{ active: activeProducts}"
       class="bearle__project__link"
       @click="ourProductsToggle">Our Products <i class="material-icons">keyboard_arrow_down</i></div>
+    <div class="bearle__project__subtitle">Project</div>
   </div>
 </template>
 
@@ -58,9 +60,28 @@ export default {
     return {
       toTheEnd: this.to > 0 ? this.to + 1 : this.$store.state.project.length,
       firstMouseX: 0,
+      activeProducts: false,
       options: {
         draggable: true,
         duration: 500
+      }
+    }
+  },
+  computed: {
+    shcherbackov() {
+      return this.$store.state.drawer
+    }
+  },
+  watch: {
+    shcherbackov(isMenuOpened) {
+      if (this.$vuetify.breakpoint.mdAndUp) {
+        if (isMenuOpened) {
+          this.add()
+        } else {
+          this.$refs.siema.remove(
+            this.$store.state.project.slice(this.from, this.toTheEnd).length
+          )
+        }
       }
     }
   },
@@ -76,9 +97,11 @@ export default {
       }
       this.$refs.siema.options.perPage = slidesPerPage
       this.$refs.siema.init()
-      // On mobile devices should be effect of showing a little bit of the next slide
       setTimeout(() => {
         this.setWrapperStyles()
+        if (this.$store.state.drawer) {
+          this.add()
+        }
       }, 1)
     }, 1)
   },
@@ -91,13 +114,17 @@ export default {
       // next slide
       this.$refs.siema.next()
     },
+    add() {
+      const newElement = document.createElement('div')
+      newElement.classList.add('slide')
+      this.$refs.siema.append(newElement)
+    },
     ourProductsToggle() {
       // on mobile devices products should be showen on the same page with project
-      if (this.$vuetify.breakpoint.mdAndDown) {
-        this.$vuetify.goTo('.bearle__our-products')
-      } else {
-        this.$store.state.showProducts = true
-      }
+      this.activeProducts
+        ? this.$vuetify.goTo(0)
+        : this.$vuetify.goTo('.bearle__our-products')
+      this.activeProducts = !this.activeProducts
     },
     preventLinkMouseDown(event) {
       // Helper to the method preventLinkClick
@@ -110,21 +137,17 @@ export default {
       if (diffMouseX === 0) this.$router.push(route)
     },
     setWrapperStyles() {
-      if (this.$vuetify.breakpoint.mdAndUp) {
-        let el = this.$el.querySelector('.bearle__project > div').style
-        el.overflow = 'visible'
-      }
+      let el = this.$el.querySelector('.bearle__project > div').style
+      el.overflow = 'visible'
     }
   }
 }
 </script>
 
 <style lang="scss">
-.bearle__project {
-  & > div:first-child {
-    min-height: 450px;
-    z-index: 10;
-  }
+.bearle__project > div:first-child {
+  min-height: 450px;
+  z-index: 10;
 }
 .bearle__project__item {
   margin-right: 30px;
@@ -152,16 +175,17 @@ export default {
     margin: 15px 0;
   }
 }
-.bearle__project__nav {
+.bearle__project__nav,
+.bearle__project__subtitle {
   display: none;
 }
-.bearle__project__link {
+.bearle__project__link,
+.bearle__project__subtitle {
   position: relative;
   font-family: FuturaBookC;
   font-size: 18px;
   letter-spacing: 3.75px;
   color: #2a2c31;
-  cursor: pointer;
   text-align: center;
   .material-icons {
     position: absolute;
@@ -174,6 +198,10 @@ export default {
 }
 @media only screen and (max-width: 330px) {
   .bearle__project {
+    & > div:first-child {
+      min-height: 390px;
+      z-index: 10;
+    }
     .bearle__project__item .bearle__project__item__img {
       width: 240px;
     }
@@ -231,13 +259,14 @@ export default {
     margin-right: 360px;
   }
   .bearle__project__link {
+    display: none;
+  }
+  .bearle__project__subtitle {
+    display: block;
     font-size: 24px;
     letter-spacing: 5px;
     z-index: 10;
     display: inline-block;
-    &:hover {
-      text-decoration: underline;
-    }
     .material-icons {
       display: none;
     }

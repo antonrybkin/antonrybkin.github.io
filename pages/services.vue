@@ -190,10 +190,6 @@ export default {
 }
 @media only screen and (min-width: 1280px) {
   .container.fluid.relative {
-    &.showed {
-      max-width: 1100px;
-      margin-left: 150px;
-    }
     &.opened {
       max-width: 100%;
       .container {
@@ -206,9 +202,6 @@ export default {
       }
     }
     .bearle__services__more {
-      &.shcherbackov {
-        right: 0;
-      }
       &.active {
         &.shcherbackov {
           right: calc(100% - 320px);

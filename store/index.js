@@ -24,8 +24,7 @@ const store = () =>
         { name: 'Company', link: '/about', order: 50 },
         { name: 'Contacts', link: '/contacts', order: 60 }
       ],
-      showProducts: false,
-      showProductsAndProject: false,
+      showProductsAndProject: true,
       services,
       ourProducts,
       project,

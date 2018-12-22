@@ -26,9 +26,7 @@
           class="material-icons bearle__our-products__nav__next"
           @click="next">keyboard_arrow_right</i>
       </div>
-      <div
-        class="bearle__our-products__link"
-        @click="$store.state.showProducts = false">Project</div>
+      <div class="bearle__our-products__link">Our Products</div>
     </div>
   </v-scroll-y-transition>
 </template>
@@ -48,6 +46,21 @@ export default {
       }
     }
   },
+  computed: {
+    shcherbackov() {
+      return this.$store.state.drawer
+    }
+  },
+  watch: {
+    shcherbackov(isMenuOpen) {
+      if (isMenuOpen) {
+        const newElement = document.createElement('div')
+        this.$refs.ourProducts.append(newElement)
+      } else {
+        this.$refs.ourProducts.remove(this.$store.state.ourProducts.length)
+      }
+    }
+  },
   mounted: function() {
     // To use the carousel on the same page with project carousel
     setTimeout(() => {
@@ -61,10 +74,8 @@ export default {
       this.$refs.ourProducts.options.perPage = slidesPerPage
       this.$refs.ourProducts.init()
       setTimeout(() => {
-        if (this.$vuetify.breakpoint.mdAndUp) {
-          document.querySelector('.bearle__our-products > div').style.overflow =
-            'visible'
-        }
+        document.querySelector('.bearle__our-products > div').style.overflow =
+          'visible'
       }, 1)
     }, 1)
   },
@@ -184,10 +195,6 @@ export default {
     font-size: 24px;
     color: #2a2c31;
     letter-spacing: 5px;
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 </style>

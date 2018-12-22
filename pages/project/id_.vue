@@ -238,7 +238,7 @@ export default {
       padding: 50px 200px 50px 70px;
       max-width: 606px;
       background-image: linear-gradient(-180deg, #515359 0%, #46484e 100%);
-      z-index: 50;
+      z-index: 90;
       .bearle__project__title {
         font-family: FuturaBookC;
         font-size: 48px;

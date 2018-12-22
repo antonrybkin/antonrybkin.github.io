@@ -6,7 +6,8 @@
       <div
         v-touch="{
           up: () => swipe('Up'),
-          down: () => swipe('Down')
+          down: () => swipe('Down'),
+          threshold: 100
         }"
         v-for="(blog, i) in $store.state.blog"
         :key="i"
@@ -101,14 +102,29 @@ export default {
       if (diffMouseX === 0) this.$router.push({ path: '/blog/' + id })
     },
     swipe(direction) {
+      // Swiping blog on devices
+      let el
       if (direction == 'Up') {
-        this.$el
-          .querySelector('.bearle__blog__item:not(:first-child):not(.active)')
-          .classList.add('active')
+        let nodes = this.$el.querySelector(
+          '.bearle__blog__item:not(:first-child):not(.active)'
+        )
+        el = nodes
+        if (el != null) {
+          el.classList.add('active')
+        } else {
+          // last post of blog
+          return false
+        }
       } else {
         let nodes = this.$el.querySelectorAll('.bearle__blog__item.active')
-        nodes[nodes.length - 1].classList.remove('active')
+        if (nodes.length == 0) {
+          el = 0
+        } else {
+          el = nodes[nodes.length - 1]
+          el.classList.remove('active')
+        }
       }
+      this.$vuetify.goTo(el)
     }
   }
 }
@@ -163,33 +179,7 @@ export default {
 .bearle__blog__nav {
   display: none;
 }
-@media only screen and (max-width: 959px) {
-  .bearle__blog {
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-    > div {
-      height: 100%;
-      overflow: hidden;
-    }
-  }
-  .bearle__blog__item {
-    background: #fff;
-    position: absolute;
-    opacity: 0.5;
-    top: 100%;
-    height: 0;
-    transition: all 0.6s;
-    &.active,
-    &:first-child {
-      opacity: 1;
-      top: 0;
-      height: 100%;
-      transition: all 0.2s;
-    }
-  }
-}
-@media only screen and (max-height: 560px) {
+@media only screen and (max-height: 550px) {
   .bearle__blog__item .bearle__blog__item__img {
     height: 180px;
   }
@@ -197,7 +187,7 @@ export default {
     margin-top: 15px;
   }
 }
-@media only screen and (min-height: 561px) and (max-height: 600px) {
+@media only screen and (min-height: 551px) and (max-height: 600px) {
   .bearle__blog__item .bearle__blog__item__img {
     height: 270px;
   }
