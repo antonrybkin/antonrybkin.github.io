@@ -21,6 +21,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      imgHeight: 0,
+      imgWidth: 0
+    }
+  },
   asyncData(context) {
     return new Promise((resolve, reject) => {
       let blog = context.store.state.blog.find(
@@ -29,10 +35,49 @@ export default {
       resolve({ blog })
     })
   },
+  mounted: function() {
+    setTimeout(() => {
+      if (this.$vuetify.breakpoint.xs) {
+        this.$store.state.outMenu = true
+        let el = this.$el.querySelector('.bearle__blog__detail__img')
+        el.classList.add('active')
+        setTimeout(() => {
+          let elImg = el.querySelector('img')
+          elImg.style.height = '100%'
+          document.addEventListener('scroll', this.onScroll)
+        }, 400)
+      }
+    }, 1)
+  },
   methods: {
     back() {
       // Close the product
-      window.history.back()
+      if (this.$vuetify.breakpoint.xs) {
+        this.$store.state.outMenu = false
+        let el = this.$el.querySelector('.bearle__blog__detail__img.active'),
+          elImg = el.querySelector('img')
+        this.imgHeight != 0
+          ? (elImg.style.height = this.imgHeight)
+          : (elImg.style.height = 'auto')
+        el.classList.remove('active')
+        document.removeEventListener('scroll', this.onScroll)
+        this.imgHeight = 0
+      }
+      setTimeout(() => {
+        window.history.back()
+      }, 420)
+    },
+    onScroll(e) {
+      if (this.imgHeight == 0) {
+        let el = this.$el.querySelector('.bearle__blog__detail__img img')
+        this.imgHeight = el.height
+        el.style.width = 'auto'
+        el.style.height = '100%'
+      } else {
+        let scrolled = this.imgHeight - window.pageYOffset / 2
+        this.$el.querySelector('.bearle__blog__detail__img').style.height =
+          scrolled + 'px'
+      }
     }
   }
 }
@@ -57,18 +102,29 @@ export default {
     font-size: 16px;
   }
   .bearle__blog__detail__img {
-    height: 504px;
+    height: 375px;
     overflow: hidden;
     position: relative;
+    transition: all 0.4s;
+    &.active {
+      height: 504px;
+      img {
+        right: -9%;
+        top: 0;
+      }
+    }
     img {
       position: absolute;
-      height: 100%;
-      right: -9%;
+      top: -22%;
+      width: 135%;
+      min-width: 100%;
+      right: -7%;
+      transition: all 0.4s;
     }
   }
 }
 .bearle__blog__close {
-  position: absolute;
+  position: fixed;
   top: 39px;
   right: 25px;
   padding-right: 22px;
@@ -95,6 +151,35 @@ export default {
   }
   &:after {
     transform: rotate(45deg);
+  }
+}
+@media only screen and (max-height: 550px) {
+  .bearle__blog__detail .bearle__blog__detail__img {
+    height: 180px;
+    &.active {
+      height: 436px;
+    }
+  }
+}
+@media only screen and (min-height: 551px) and (max-height: 600px) {
+  .bearle__blog__detail .bearle__blog__detail__img {
+    height: 270px;
+    &.active {
+      height: 436px;
+    }
+  }
+}
+@media only screen and (min-width: 400px) and (max-width: 600px) {
+  .bearle__blog__detail .bearle__blog__detail__img {
+    height: 470px;
+    &.active {
+      height: 631px;
+    }
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 959px) {
+  .bearle__blog__detail .bearle__blog__detail__img {
+    height: 670px;
   }
 }
 @media only screen and (min-width: 960px) {
@@ -127,6 +212,8 @@ export default {
       left: 0;
       bottom: 0;
       img {
+        top: 0;
+        width: auto;
         height: 100%;
       }
     }

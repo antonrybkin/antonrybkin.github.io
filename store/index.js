@@ -11,6 +11,7 @@ const store = () =>
   new Vuex.Store({
     state: {
       drawer: false,
+      outMenu: false,
       navItems: [
         { name: 'Home page', link: '/', order: 10 },
         {
@@ -25,6 +26,7 @@ const store = () =>
         { name: 'Contacts', link: '/contacts', order: 60 }
       ],
       showProductsAndProject: true,
+      currentBlogSlide: 0,
       services,
       ourProducts,
       project,

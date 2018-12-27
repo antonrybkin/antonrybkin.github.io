@@ -4,14 +4,18 @@
 
     <nuxt />
 
+    <landscape-block />
+
   </v-app>
 </template>
 
 <script>
 import MainNav from '../components/MainNav.vue'
+import LandscapeBlock from '../components/LandscapeBlock.vue'
 export default {
   components: {
-    MainNav: MainNav
+    MainNav: MainNav,
+    LandscapeBlock: LandscapeBlock
   }
 }
 </script>

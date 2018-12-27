@@ -183,7 +183,7 @@ export default {
       left: -33px;
     }
     &.active {
-      right: calc(100% + 25px);
+      right: calc(100% + 15px);
       width: 240px;
     }
   }

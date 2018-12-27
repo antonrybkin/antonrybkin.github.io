@@ -104,8 +104,12 @@
 }
 .bearle__footer__calculator {
   position: absolute;
-  bottom: 12px;
+  top: 25px;
   right: 22px;
+  @media only screen and (min-width: 601px) {
+    top: auto;
+    bottom: 12px;
+  }
   img {
     width: 28px;
     height: 48px;

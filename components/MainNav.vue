@@ -26,7 +26,7 @@
       </nav>
     </transition>
     <div
-      :class="{isactive: $store.state.drawer}"
+      :class="{isactive: $store.state.drawer, out: $store.state.outMenu}"
       class="bearle__burger">
       <div
         @click="$store.commit('menuToggle')">&nbsp;</div></div>

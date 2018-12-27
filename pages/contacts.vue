@@ -207,7 +207,8 @@ export default {
 }
 button.bearle__contacts__adress-link {
   float: none;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
+  margin-top: -10px;
   margin-left: -3px;
   .material-icons {
     vertical-align: sub;

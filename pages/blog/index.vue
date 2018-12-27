@@ -63,8 +63,25 @@ export default {
     }
   },
   mounted: function() {
-    // To use the carousel on the same page with project carousel
+    // Animation
+    let currentBlogSlide = this.$store.state.currentBlogSlide + 1,
+      BreakException = {},
+      start = '.bearle__blog__item:nth-child(' + currentBlogSlide + ')'
+    if (currentBlogSlide != 1) {
+      this.$vuetify.goTo(start, { duration: 0 })
+    }
+    try {
+      this.$el
+        .querySelectorAll('.bearle__blog__item:not(:first-child)')
+        .forEach(function(element, index) {
+          if (index == currentBlogSlide - 1) throw BreakException
+          element.classList.add('active')
+        })
+    } catch (e) {
+      if (e !== BreakException) throw e
+    }
     setTimeout(() => {
+      //  The carousel only on desctop
       this.$refs.siema.destroy(true)
       if (this.$vuetify.breakpoint.mdAndUp) {
         this.$refs.siema.init()
@@ -99,7 +116,15 @@ export default {
       // Disable links when slides are moving
       let lastMouseX = event.clientX
       let diffMouseX = this.firstMouseX - lastMouseX
-      if (diffMouseX === 0) this.$router.push({ path: '/blog/' + id })
+      if (diffMouseX === 0) {
+        // Save the number curent slide for comeback animation
+        this.$store.state.currentBlogSlide =
+          this.$el.querySelectorAll(
+            '.bearle__blog__item:first-child, .bearle__blog__item.active'
+          ).length - 1
+        // Go to the blog's detail page
+        this.$router.push({ path: '/blog/' + id })
+      }
     },
     swipe(direction) {
       // Swiping blog on devices
@@ -116,11 +141,17 @@ export default {
           return false
         }
       } else {
-        let nodes = this.$el.querySelectorAll('.bearle__blog__item.active')
+        let nodes = this.$el.querySelectorAll('.bearle__blog__item.active'),
+          allNodes = this.$el.querySelectorAll(
+            '.bearle__blog__item:not(:first-child)'
+          )
         if (nodes.length == 0) {
           el = 0
+        } else if (nodes.length == 1) {
+          el = 0
+          nodes[nodes.length - 1].classList.remove('active')
         } else {
-          el = nodes[nodes.length - 1]
+          el = nodes[nodes.length - 2]
           el.classList.remove('active')
         }
       }
