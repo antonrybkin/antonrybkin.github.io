@@ -7,11 +7,11 @@
       <template v-for="(project, i) in $store.state.project.slice(from, toTheEnd)">
         <nuxt-link
           :key="i"
-          to="/project/id_"
+          :to="{ path:'/project/' + project.id }"
           event=""
           class="bearle__project__item"
           @mousedown.native.prevent="preventLinkMouseDown($event)"
-          @click.native.prevent="preventLinkClick('/project/id_', $event)">
+          @click.native.prevent="preventLinkClick(project.id, $event)">
           <div class="bearle__project__item__sub-title">{{ project.subTitle }}</div>
           <img
             v-if="project.img"
@@ -130,11 +130,11 @@ export default {
       // Helper to the method preventLinkClick
       this.firstMouseX = event.clientX
     },
-    preventLinkClick(route, event) {
+    preventLinkClick(id, event) {
       // Disable links when slides are moving
       let lastMouseX = event.clientX
       let diffMouseX = this.firstMouseX - lastMouseX
-      if (diffMouseX === 0) this.$router.push(route)
+      if (diffMouseX === 0) this.$router.push({ path: '/project/' + id })
     },
     setWrapperStyles() {
       let el = this.$el.querySelector('.bearle__project > div').style

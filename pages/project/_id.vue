@@ -7,34 +7,29 @@
       <div class="bearle__project__previews">
         <ul>
           <li
-            v-for="(item,i) in items"
+            v-for="(image,i) in project.images"
             :key="i">
             <div
               @click="$vuetify.goTo('#el'+i, { offset: -150 })">
               <img
-                :src="item.src"
+                :src="image.src"
                 alt="">
             </div>
           </li>
         </ul>
       </div>
-      <div class="bearle__project__title">Block Adoption Fund</div>
-      <h1>H1 title</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <h2>h2 title</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <h3>h3 title</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="bearle__project__title">{{ project.title }}</div>
+      <div v-html="project.text" />
     </aside>
     <div class="bearle__project__gallery">
       <siema
         ref="siema"
         :options="options">
         <img
-          v-for="(item,i) in items"
+          v-for="(image,i) in project.images"
           :key="i"
           :id="'el'+i"
-          :src="item.src"
+          :src="image.src"
           alt="">
       </siema>
     </div>
@@ -50,17 +45,19 @@ Vue.use(Siema)
 export default {
   data() {
     return {
-      items: [
-        { src: '/images/upload/project/1_big.jpg' },
-        { src: '/images/upload/project/2_big.jpg' },
-        { src: '/images/upload/project/3_big.jpg' },
-        { src: '/images/upload/project/4_big.jpg' }
-      ],
       options: {
         draggable: true,
         duration: 500
       }
     }
+  },
+  asyncData(context) {
+    return new Promise((resolve, reject) => {
+      let project = context.store.state.project.find(
+        p => p.id == context.route.params.id
+      )
+      resolve({ project })
+    })
   },
   mounted: function() {
     // Horizontal slider only on mobile devices

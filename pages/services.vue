@@ -15,8 +15,7 @@
           fluid
           grid-list-xl>
           <v-layout wrap>
-            <template
-              v-for="(item, index) in row">
+            <template v-for="(item, index) in row">
               <v-flex
                 :key="index"
                 xs12
