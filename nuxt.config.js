@@ -1,4 +1,5 @@
 import blog from './store/blog'
+import project from './store/project'
 
 const pkg = require('./package')
 
@@ -36,9 +37,9 @@ module.exports = {
     ]
   },
   // For GH Pages:
-  router: {
-    base: '/bearle-nuxt/'
-  },
+  // router: {
+  //   base: '/bearle-nuxt/'
+  // },
 
   /*
   ** Customize the progress-bar color
@@ -93,12 +94,16 @@ module.exports = {
       }
     }
   },
-  // Genrating pages for every blog's post
+  // Generating pages for every blog's post and project's detail page
   generate: {
     routes: function() {
-      let routes = blog.map(post => {
+      let blogPosts = blog.map(post => {
         return '/blog/' + post.id
       })
+      let projects = project.map(pro => {
+        return '/project/' + pro.id
+      })
+      let routes = [...blogPosts, ...projects]
       return routes
     }
   }
