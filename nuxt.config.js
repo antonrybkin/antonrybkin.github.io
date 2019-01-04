@@ -1,3 +1,5 @@
+import blog from './store/blog'
+
 const pkg = require('./package')
 
 // only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
@@ -34,9 +36,9 @@ module.exports = {
     ]
   },
   // For GH Pages:
-  // router: {
-  //   base: '/bearle-nuxt/'
-  // },
+  router: {
+    base: '/bearle-nuxt/'
+  },
 
   /*
   ** Customize the progress-bar color
@@ -89,6 +91,15 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+    }
+  },
+  // Genrating pages for every blog's post
+  generate: {
+    routes: function() {
+      let routes = blog.map(post => {
+        return '/blog/' + post.id
+      })
+      return routes
     }
   }
 }
