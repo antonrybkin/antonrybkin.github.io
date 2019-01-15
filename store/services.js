@@ -1,4 +1,4 @@
-const serviceList = [
+const services = [
   {
     title: 'Site',
     desc: 'Lorem ipsum dolor sit amet, consectetur',
@@ -118,26 +118,7 @@ const serviceList = [
     title: 'Block chain',
     desc: 'Lorem ipsum dolor sit amet, consectetur',
     priceFrom: 17000
-  },
-  {
-    title: 'Automation',
-    desc: 'Lorem ipsum dolor sit amet, consectetur',
-    priceFrom: 800
-  },
-  {
-    title: 'Site',
-    desc: 'Lorem ipsum dolor sit amet, consectetur',
-    priceFrom: 800
-  },
-  {
-    title: 'Mobile App',
-    desc: 'Lorem ipsum dolor sit amet, consectetur',
-    priceFrom: 1500
   }
 ]
-
-var services = []
-services.push(serviceList.splice(0, 4))
-services.push(serviceList.splice(0, serviceList.length))
 
 export default services

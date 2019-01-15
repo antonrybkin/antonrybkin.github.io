@@ -241,7 +241,7 @@ button.bearle__contacts__adress-link {
     max-width: 685px;
     padding: 30px 30px 15px 30px;
     textarea {
-      height: 254px;
+      height: 190px;
     }
   }
   .bearle__contacts__feedback-link,

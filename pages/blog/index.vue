@@ -123,7 +123,7 @@ export default {
             '.bearle__blog__item:first-child, .bearle__blog__item.active'
           ).length - 1
         // Go to the blog's detail page
-        this.$router.push({ path: '/blog/' + id })
+        this.$router.push('/blog/' + id)
       }
     },
     swipe(direction) {
@@ -162,6 +162,9 @@ export default {
 </script>
 
 <style lang="scss">
+.bearle__blog {
+  padding-bottom: 50px;
+}
 .bearle__blog__item {
   margin-bottom: 33px;
   a {

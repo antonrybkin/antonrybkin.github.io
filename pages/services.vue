@@ -7,10 +7,11 @@
       <siema
         ref="siema"
         :options="options"
+        :current.sync="curSlide"
         :class="{ active: isOpen }"
         class="bearle__services">
         <v-container
-          v-for="(row, i) in $store.state.services"
+          v-for="(row, i) in services"
           :key="i"
           fluid
           grid-list-xl>
@@ -34,6 +35,18 @@
         :class="{ shcherbackov: $store.state.drawer, active: isOpen }"
         class="bearle__services__more"
         @click="more"><span><i class="material-icons">keyboard_arrow_down</i> more services</span></div>
+      <div
+        :class="{ active: isOpen }"
+        class="bearle__services__nav">
+        <i
+          v-if="curSlide !== 1"
+          class="material-icons bearle__services__nav__prev"
+          @click="prev">keyboard_arrow_left</i>
+        <i
+          :style="{ visibility: curSlide == lastSlide? 'hidden' : 'visible' }"
+          class="material-icons bearle__services__nav__next"
+          @click="next">keyboard_arrow_right</i>
+      </div>
     </no-ssr>
   </v-container>
 </template>
@@ -48,10 +61,32 @@ export default {
   data() {
     return {
       isOpen: false,
+      curSlide: 0,
       options: {
         draggable: false,
         duration: 500
       }
+    }
+  },
+  computed: {
+    services() {
+      let allServives = this.$store.state.services.slice(0)
+      // The difference between services in mobile and desktop version
+      if (this.$vuetify.breakpoint.smAndDown) {
+        let mobileServices = []
+        mobileServices[0] = allServives.splice(0, 4)
+        mobileServices.push(allServives.splice(0, allServives.length))
+        return mobileServices
+      } else {
+        let pcServices = []
+        while (allServives.length > 0) {
+          pcServices.push(allServives.splice(0, 4))
+        }
+        return pcServices
+      }
+    },
+    lastSlide() {
+      return this.services.length - 2
     }
   },
   methods: {
@@ -61,7 +96,7 @@ export default {
         this.$refs.siema.goTo(0)
       } else {
         this.isOpen = true
-        this.$refs.siema.next()
+        this.$refs.siema.goTo(1)
       }
     },
     prev() {
@@ -134,18 +169,19 @@ export default {
 }
 .bearle__services__nav {
   position: absolute;
-  bottom: 0;
+  top: 665px;
   right: 25%;
   opacity: 0;
   .material-icons {
     font-size: 48px;
     cursor: pointer;
   }
-  &.active {
-    opacity: 1;
-  }
 }
 @media only screen and (min-width: 961px) {
+  .bearle__services.active > div > div:first-child {
+    display: none;
+    transition: all 1s;
+  }
   .bearle__services {
     max-width: 756px;
     height: 100%;
@@ -153,7 +189,7 @@ export default {
     .container {
       height: 100%;
       & > div:first-child {
-        height: 100%;
+        //height: 100%;
       }
     }
     &.active {
@@ -185,6 +221,9 @@ export default {
       right: calc(100% + 15px);
       width: 240px;
     }
+  }
+  .bearle__services__nav.active {
+    opacity: 1;
   }
 }
 @media only screen and (min-width: 1280px) {

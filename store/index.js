@@ -27,6 +27,7 @@ const store = () =>
       ],
       showProductsAndProject: true,
       currentBlogSlide: 0,
+      currentProject: {},
       services,
       ourProducts,
       project,

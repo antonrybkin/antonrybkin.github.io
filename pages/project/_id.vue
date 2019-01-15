@@ -65,8 +65,9 @@ export default {
       this.$refs.siema.destroy(true)
       if (this.$vuetify.breakpoint.smAndDown) {
         this.$refs.siema.init()
+        window.scrollTo(0, 90)
       }
-    }, 10)
+    }, 30)
   },
   methods: {
     back() {
@@ -85,7 +86,7 @@ export default {
     font-family: Futura-Bold;
     font-size: 14px;
     letter-spacing: 2.92px;
-    position: absolute;
+    position: fixed;
     top: 39px;
     right: 25px;
     padding-right: 21px;
@@ -123,32 +124,6 @@ export default {
     font-family: FuturaBookC;
     color: #fff;
     z-index: 90;
-    &:after,
-    &:before {
-      content: '';
-      position: fixed;
-      margin-left: -40px;
-      width: 100%;
-      z-index: 20;
-    }
-    &:before {
-      top: 0;
-      height: 20px;
-      background-image: linear-gradient(
-        -180deg,
-        rgba(98, 100, 106, 1) 0%,
-        rgba(146, 148, 154, 0) 100%
-      );
-    }
-    &:after {
-      bottom: 40%;
-      height: 50px;
-      background-image: linear-gradient(
-        -180deg,
-        rgba(146, 148, 154, 0) 0%,
-        rgba(98, 100, 106, 1) 100%
-      );
-    }
     .bearle__project__title {
       font-family: FuturaBookC;
       font-size: 24px;
